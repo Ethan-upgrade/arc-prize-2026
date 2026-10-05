@@ -4,7 +4,7 @@
     python scripts/kaggle_ab.py status   # kernel states
     python scripts/kaggle_ab.py pull     # download results into runs/ab_kaggle/
 
-Needs ~/.kaggle/kaggle.json. Nothing here prints the key.
+Needs a Kaggle API token in ~/.kaggle/. Nothing here prints the key.
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT / "build" / "kaggle"
 KAGGLE = str(ROOT / ".venv" / "Scripts" / "kaggle")
 N_KERNELS, PROCS_PER_KERNEL, STEPS = 2, 4, 500
-DATASET_SLUG = "arc2026-hintarc-code"
+DATASET_SLUG = "arc2026-hint-ab-code"
 
 RUNNER = '''
 import glob, os, shutil, subprocess, sys
@@ -48,10 +48,13 @@ shutil.rmtree(WORK)  # keep only results in the output
 
 
 def user() -> str:
-    cfg = Path.home() / ".kaggle" / "kaggle.json"
-    if not cfg.exists():
-        sys.exit(f"missing {cfg}: create a token at kaggle.com -> Settings -> API")
-    return json.loads(cfg.read_text())["username"]
+    r = subprocess.run([KAGGLE, "config", "view"], capture_output=True, text=True)
+    for line in r.stdout.splitlines():
+        if line.strip().startswith("- username:"):
+            name = line.split(":", 1)[1].strip()
+            if name and name != "None":
+                return name
+    sys.exit("Kaggle CLI is not authenticated: put a token in ~/.kaggle/access_token")
 
 
 def kg(*args: str, check: bool = True) -> str:
@@ -76,7 +79,7 @@ def build_dataset(u: str) -> Path:
     for f in ca_src.glob("dataset/arc-agi_agi2eval_*.json"):
         shutil.copy(f, ca_dst / "dataset" / f.name)
     (d / "dataset-metadata.json").write_text(json.dumps({
-        "title": DATASET_SLUG, "id": f"{u}/{DATASET_SLUG}",
+        "title": "ARC 2026 hint AB code", "id": f"{u}/{DATASET_SLUG}",
         "licenses": [{"name": "CC0-1.0"}]}))
     return d
 
