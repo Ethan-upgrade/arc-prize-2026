@@ -23,7 +23,8 @@ import preprocessing  # noqa: E402
 import solution_selection  # noqa: E402
 import train  # noqa: E402
 
-torch.set_default_device("cuda")
+torch.set_default_device(os.environ.get("DEV", "cpu"))
+torch.set_num_threads(int(os.environ.get("THREADS", "1")))
 
 
 def attempts(log, n_test):
@@ -56,6 +57,7 @@ def main():
     ap.add_argument("--tasks", nargs="*", help="task ids; default = all with a non-identity hint")
     ap.add_argument("--steps", type=int, default=500)
     ap.add_argument("--k", type=int, default=3)
+    ap.add_argument("--shard", default="0/1", help="i/n: process every n-th task starting at i")
     ap.add_argument("--out", default=str(Path(__file__).resolve().parents[1] / "runs" / "ab.jsonl"))
     args = ap.parse_args()
 
@@ -64,6 +66,8 @@ def main():
     A = lambda x: np.array(x, dtype=np.int8)  # noqa: E731
 
     names = args.tasks or list(problems)
+    si, sn = map(int, args.shard.split("/"))
+    names = names[si::sn]
     checkpoints = {c for c in (100, 200, 300, 500, 750, 1000, 1500, 2000) if c <= args.steps} | {args.steps}
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     done = set()

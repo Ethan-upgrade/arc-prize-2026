@@ -2,3 +2,6 @@ data_repo/
 runs/
 __pycache__/
 *.pyc
+.venv/
+third_party/
+build/
