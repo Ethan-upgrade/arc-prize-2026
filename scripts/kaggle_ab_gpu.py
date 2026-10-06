@@ -18,8 +18,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from kaggle_ab import BUILD, DATASET_SLUG, ROOT, build_dataset, kg, user  # noqa: E402
 
+# Round 2 (10-06): fresh tasks 40-79 to test "identity hints hurt" without reusing the tasks it came from.
 KERNEL_SLUG = "arc2026-hint-ab-gpu"
-N_TASKS, STEPS, PROCS = 40, 400, 4
+TASK_SLICE, ARMS, STEPS, PROCS, N_KERNELS = (40, 80), ["base", "base_s1", "hint_noid"], 300, 4, 2
 # Results are flushed per (task, arm), so whatever finishes before Kaggle's limit is kept.
 TIME_BUDGET_HOURS = 11
 
@@ -36,7 +37,7 @@ for j in range({procs}):
     out = f"/kaggle/working/ab/proc{{j}}"
     procs.append(subprocess.Popen(
         [sys.executable, "-u", "-m", "arcsolver.ab", "--split", "evaluation", "--steps", "{steps}",
-         "--tasks", *tasks[j::{procs}], "--out", out + ".jsonl"],
+         "--arms", *{arms}, "--tasks", *tasks[j::{procs}], "--out", out + ".jsonl"],
         cwd=code, env={{**os.environ, "DEV": "cuda", "THREADS": "1"}},
         stdout=open(out + ".log", "w"), stderr=subprocess.STDOUT))
 while any(p.poll() is None for p in procs) and time.time() < deadline:
@@ -50,13 +51,17 @@ for f in sorted(glob.glob("/kaggle/working/ab/*.log")):
 '''
 
 
-def build_kernel(u: str, tasks: list[str]) -> Path:
-    d = BUILD / "ab_gpu_kernel"
+def slug(k: int) -> str:
+    return f"{KERNEL_SLUG}-r2-{k}"
+
+
+def build_kernel(u: str, tasks: list[str], k: int) -> Path:
+    d = BUILD / f"ab_gpu_kernel{k}"
     shutil.rmtree(d, ignore_errors=True)
     d.mkdir(parents=True)
-    (d / "run.py").write_text(RUNNER.format(tasks=tasks, budget=TIME_BUDGET_HOURS, procs=PROCS, steps=STEPS))
+    (d / "run.py").write_text(RUNNER.format(tasks=tasks, budget=TIME_BUDGET_HOURS, procs=PROCS, steps=STEPS, arms=ARMS))
     (d / "kernel-metadata.json").write_text(json.dumps({
-        "id": f"{u}/{KERNEL_SLUG}", "title": KERNEL_SLUG, "code_file": "run.py",
+        "id": f"{u}/{slug(k)}", "title": slug(k), "code_file": "run.py",
         "language": "python", "kernel_type": "script", "is_private": True,
         "enable_gpu": True, "enable_internet": False,
         "dataset_sources": [f"{u}/{DATASET_SLUG}"], "competition_sources": [],
@@ -66,7 +71,7 @@ def build_kernel(u: str, tasks: list[str]) -> Path:
 
 def selected_tasks() -> list[str]:
     sel = json.loads((ROOT / "runs" / "hint_tasks_agi1.json").read_text())
-    return [r["task"] for r in sel["tasks"][:N_TASKS]]
+    return [r["task"] for r in sel["tasks"][TASK_SLICE[0]:TASK_SLICE[1]]]
 
 
 if __name__ == "__main__":
@@ -78,10 +83,14 @@ if __name__ == "__main__":
             if "ready" in kg("datasets", "status", f"{u}/{DATASET_SLUG}", check=False).lower():
                 break
             time.sleep(10)
-        print(kg("kernels", "push", "-p", str(build_kernel(u, selected_tasks()))).strip())
+        tasks = selected_tasks()
+        for k in range(N_KERNELS):
+            print(kg("kernels", "push", "-p", str(build_kernel(u, tasks[k::N_KERNELS], k))).strip())
     elif cmd == "status":
-        print(kg("kernels", "status", f"{u}/{KERNEL_SLUG}", check=False).strip())
+        for k in range(N_KERNELS):
+            print(kg("kernels", "status", f"{u}/{slug(k)}", check=False).strip())
     elif cmd == "pull":
-        out = ROOT / "runs" / "ab_gpu"
-        out.mkdir(parents=True, exist_ok=True)
-        print(kg("kernels", "output", f"{u}/{KERNEL_SLUG}", "-p", str(out), "--force", check=False).strip()[-300:])
+        for k in range(N_KERNELS):
+            out = ROOT / "runs" / "ab_gpu_r2" / f"k{k}"
+            out.mkdir(parents=True, exist_ok=True)
+            print(kg("kernels", "output", f"{u}/{slug(k)}", "-p", str(out), "--force", check=False).strip()[-300:])

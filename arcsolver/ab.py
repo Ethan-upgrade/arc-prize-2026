@@ -33,9 +33,9 @@ def attempts(log, n_test):
     return a1, a2
 
 
-def run_arm(problem, solution, name, hints, steps, checkpoints):
-    torch.manual_seed(0)
-    np.random.seed(0)
+def run_arm(problem, solution, name, hints, steps, checkpoints, seed=0):
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     task = preprocessing.Task(name, problem, solution)
     model = HintedCompressor(task, hints) if hints is not None else arc_compressor.ARCCompressor(task)
     opt = torch.optim.Adam(model.weights_list, lr=0.01, betas=(0.5, 0.9))
@@ -57,6 +57,8 @@ def main():
     ap.add_argument("--tasks", nargs="*", help="task ids; default = all with a non-identity hint")
     ap.add_argument("--steps", type=int, default=500)
     ap.add_argument("--k", type=int, default=3)
+    ap.add_argument("--arms", nargs="+", default=["base", "hint"],
+                    help="base, base_s1 (seed 1: noise floor), hint, hint_noid (drop identity hints)")
     ap.add_argument("--shard", default="0/1", help="i/n: process every n-th task starting at i")
     ap.add_argument("--out", default=str(Path(__file__).resolve().parents[1] / "runs" / "ab.jsonl"))
     args = ap.parse_args()
@@ -80,10 +82,13 @@ def main():
                                [A(e["input"]) for e in p["test"]], k=args.k)
         if not args.tasks and all(h.program == [] for h in hints):
             continue  # only identity (or nothing): the A/B would be uninformative
-        for arm, arm_hints in (("base", None), ("hint", hints)):
+        arm_specs = {"base": (None, 0), "base_s1": (None, 1), "hint": (hints, 0),
+                     "hint_noid": ([h for h in hints if h.program], 0)}
+        for arm in args.arms:
+            arm_hints, seed = arm_specs[arm]
             if (name, arm) in done:
                 continue
-            curve, gates, sec = run_arm(p, solutions[name], name, arm_hints, args.steps, checkpoints)
+            curve, gates, sec = run_arm(p, solutions[name], name, arm_hints, args.steps, checkpoints, seed)
             rec = {"task": name, "arm": arm, "curve": curve, "gates": gates, "seconds": round(sec, 1),
                    "hints": [{"program": h.program, "train_acc": round(h.train_acc, 3)} for h in hints]}
             with open(args.out, "a") as f:
