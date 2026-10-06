@@ -76,7 +76,7 @@ def build_dataset(u: str) -> Path:
         if f.name != "bench_one.py":
             shutil.copy(f, ca_dst / f.name)
     shutil.copy(ca_src / "LICENSE", ca_dst / "LICENSE")
-    for f in ca_src.glob("dataset/arc-agi_agi2eval_*.json"):
+    for f in [*ca_src.glob("dataset/arc-agi_agi2eval_*.json"), *ca_src.glob("dataset/arc-agi_evaluation_*.json")]:
         shutil.copy(f, ca_dst / "dataset" / f.name)
     (d / "dataset-metadata.json").write_text(json.dumps({
         "title": "ARC 2026 hint AB code", "id": f"{u}/{DATASET_SLUG}",

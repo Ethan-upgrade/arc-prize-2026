@@ -47,7 +47,7 @@ def run_arm(problem, solution, name, hints, steps, checkpoints):
             a1, a2 = attempts(log, task.n_test)
             curve[step + 1] = sum(any(a[i] == solution[i] for a in (a1, a2))
                                   for i in range(task.n_test)) / task.n_test
-    gates = [float(g) for g in getattr(model, "gates", [])]
+    gates = [float(g.detach()) for g in getattr(model, "gates", [])]
     return curve, gates, time.time() - t0
 
 
@@ -68,7 +68,7 @@ def main():
     names = args.tasks or list(problems)
     si, sn = map(int, args.shard.split("/"))
     names = names[si::sn]
-    checkpoints = {c for c in (100, 200, 300, 500, 750, 1000, 1500, 2000) if c <= args.steps} | {args.steps}
+    checkpoints = set(range(50, args.steps + 1, 50)) | {args.steps}
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     done = set()
     if Path(args.out).exists():
