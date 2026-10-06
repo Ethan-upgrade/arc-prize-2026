@@ -25,7 +25,7 @@ STEPS = 400
 
 RUNNER = r'''
 import glob, json, os, subprocess, sys, time
-src = os.path.dirname(sorted(glob.glob("/kaggle/input/**/CompressARC/train.py", recursive=True))[0])
+src = os.path.dirname(sorted(glob.glob("/kaggle/input/**/arc_compressor.py", recursive=True))[0])
 os.chdir(src)
 sys.path.insert(0, src)
 print(subprocess.run(["nvidia-smi", "--query-gpu=name,memory.total", "--format=csv,noheader"],
