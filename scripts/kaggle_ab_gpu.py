@@ -74,6 +74,26 @@ def selected_tasks() -> list[str]:
     return [r["task"] for r in sel["tasks"][TASK_SLICE[0]:TASK_SLICE[1]]]
 
 
+
+# Correctness + speed check for the CUDA-graph trainer: the 8 tasks from the eager reproduction
+# (7/8 solved in 400 steps, see WORKLOG), same budget, 4 processes on one T4.
+FAST_SLUG = "arc2026-fast-check"
+REPRO_TASKS = "4cd1b7b2 bbb1b8b6 fc754716 8597cfd7 a406ac07 c7d4e6ad 332efdb3 1a2e2828".split()
+
+
+def push_fastcheck(u: str):
+    d = BUILD / "fast_check_kernel"
+    shutil.rmtree(d, ignore_errors=True)
+    d.mkdir(parents=True)
+    (d / "run.py").write_text(RUNNER.format(tasks=REPRO_TASKS, budget=2, procs=4, steps=400,
+                                            arms=["base"], extra=["--fast"]))
+    (d / "kernel-metadata.json").write_text(json.dumps({
+        "id": f"{u}/{FAST_SLUG}", "title": FAST_SLUG, "code_file": "run.py",
+        "language": "python", "kernel_type": "script", "is_private": True,
+        "enable_gpu": True, "enable_internet": False,
+        "dataset_sources": [f"{u}/{DATASET_SLUG}"], "competition_sources": [], "kernel_sources": []}))
+    print(kg("kernels", "push", "-p", str(d)).strip())
+
 if __name__ == "__main__":
     u = user()
     cmd = sys.argv[1]
@@ -106,23 +126,3 @@ if __name__ == "__main__":
             out = ROOT / "runs" / "ab_gpu_r2" / f"k{k}"
             out.mkdir(parents=True, exist_ok=True)
             print(kg("kernels", "output", f"{u}/{slug(k)}", "-p", str(out), "--force", check=False).strip()[-300:])
-
-
-# Correctness + speed check for the CUDA-graph trainer: the 8 tasks from the eager reproduction
-# (7/8 solved in 400 steps, see WORKLOG), same budget, 4 processes on one T4.
-FAST_SLUG = "arc2026-fast-check"
-REPRO_TASKS = "4cd1b7b2 bbb1b8b6 fc754716 8597cfd7 a406ac07 c7d4e6ad 332efdb3 1a2e2828".split()
-
-
-def push_fastcheck(u: str):
-    d = BUILD / "fast_check_kernel"
-    shutil.rmtree(d, ignore_errors=True)
-    d.mkdir(parents=True)
-    (d / "run.py").write_text(RUNNER.format(tasks=REPRO_TASKS, budget=2, procs=4, steps=400,
-                                            arms=["base"], extra=["--fast"]))
-    (d / "kernel-metadata.json").write_text(json.dumps({
-        "id": f"{u}/{FAST_SLUG}", "title": FAST_SLUG, "code_file": "run.py",
-        "language": "python", "kernel_type": "script", "is_private": True,
-        "enable_gpu": True, "enable_internet": False,
-        "dataset_sources": [f"{u}/{DATASET_SLUG}"], "competition_sources": [], "kernel_sources": []}))
-    print(kg("kernels", "push", "-p", str(d)).strip())
