@@ -37,7 +37,7 @@ for j in range({procs}):
     out = f"/kaggle/working/ab/proc{{j}}"
     procs.append(subprocess.Popen(
         [sys.executable, "-u", "-m", "arcsolver.ab", "--split", "evaluation", "--steps", "{steps}",
-         "--arms", *{arms}, "--tasks", *tasks[j::{procs}], "--out", out + ".jsonl"],
+         "--arms", *{arms}, *{extra}, "--tasks", *tasks[j::{procs}], "--out", out + ".jsonl"],
         cwd=code, env={{**os.environ, "DEV": "cuda", "THREADS": "1"}},
         stdout=open(out + ".log", "w"), stderr=subprocess.STDOUT))
 while any(p.poll() is None for p in procs) and time.time() < deadline:
@@ -59,7 +59,7 @@ def build_kernel(u: str, tasks: list[str], k: int) -> Path:
     d = BUILD / f"ab_gpu_kernel{k}"
     shutil.rmtree(d, ignore_errors=True)
     d.mkdir(parents=True)
-    (d / "run.py").write_text(RUNNER.format(tasks=tasks, budget=TIME_BUDGET_HOURS, procs=PROCS, steps=STEPS, arms=ARMS))
+    (d / "run.py").write_text(RUNNER.format(tasks=tasks, budget=TIME_BUDGET_HOURS, procs=PROCS, steps=STEPS, arms=ARMS, extra=[]))
     (d / "kernel-metadata.json").write_text(json.dumps({
         "id": f"{u}/{slug(k)}", "title": slug(k), "code_file": "run.py",
         "language": "python", "kernel_type": "script", "is_private": True,
@@ -86,6 +86,18 @@ if __name__ == "__main__":
         tasks = selected_tasks()
         for k in range(N_KERNELS):
             print(kg("kernels", "push", "-p", str(build_kernel(u, tasks[k::N_KERNELS], k))).strip())
+    elif cmd == "fastcheck":
+        kg("datasets", "version", "-p", str(build_dataset(u)), "-m", time.strftime("%Y-%m-%d %H:%M"), "-r", "zip")
+        for _ in range(60):
+            if "ready" in kg("datasets", "status", f"{u}/{DATASET_SLUG}", check=False).lower():
+                break
+            time.sleep(10)
+        push_fastcheck(u)
+    elif cmd == "fastcheck-pull":
+        out = ROOT / "runs" / "fast_check"
+        out.mkdir(parents=True, exist_ok=True)
+        print(kg("kernels", "status", f"{u}/{FAST_SLUG}", check=False).strip())
+        print(kg("kernels", "output", f"{u}/{FAST_SLUG}", "-p", str(out), "--force", check=False).strip()[-200:])
     elif cmd == "status":
         for k in range(N_KERNELS):
             print(kg("kernels", "status", f"{u}/{slug(k)}", check=False).strip())
@@ -94,3 +106,23 @@ if __name__ == "__main__":
             out = ROOT / "runs" / "ab_gpu_r2" / f"k{k}"
             out.mkdir(parents=True, exist_ok=True)
             print(kg("kernels", "output", f"{u}/{slug(k)}", "-p", str(out), "--force", check=False).strip()[-300:])
+
+
+# Correctness + speed check for the CUDA-graph trainer: the 8 tasks from the eager reproduction
+# (7/8 solved in 400 steps, see WORKLOG), same budget, 4 processes on one T4.
+FAST_SLUG = "arc2026-fast-check"
+REPRO_TASKS = "4cd1b7b2 bbb1b8b6 fc754716 8597cfd7 a406ac07 c7d4e6ad 332efdb3 1a2e2828".split()
+
+
+def push_fastcheck(u: str):
+    d = BUILD / "fast_check_kernel"
+    shutil.rmtree(d, ignore_errors=True)
+    d.mkdir(parents=True)
+    (d / "run.py").write_text(RUNNER.format(tasks=REPRO_TASKS, budget=2, procs=4, steps=400,
+                                            arms=["base"], extra=["--fast"]))
+    (d / "kernel-metadata.json").write_text(json.dumps({
+        "id": f"{u}/{FAST_SLUG}", "title": FAST_SLUG, "code_file": "run.py",
+        "language": "python", "kernel_type": "script", "is_private": True,
+        "enable_gpu": True, "enable_internet": False,
+        "dataset_sources": [f"{u}/{DATASET_SLUG}"], "competition_sources": [], "kernel_sources": []}))
+    print(kg("kernels", "push", "-p", str(d)).strip())

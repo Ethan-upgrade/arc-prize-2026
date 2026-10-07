@@ -33,16 +33,23 @@ def attempts(log, n_test):
     return a1, a2
 
 
-def run_arm(problem, solution, name, hints, steps, checkpoints, seed=0):
+def run_arm(problem, solution, name, hints, steps, checkpoints, seed=0, fast=False):
     torch.manual_seed(seed)
     np.random.seed(seed)
     task = preprocessing.Task(name, problem, solution)
     model = HintedCompressor(task, hints) if hints is not None else arc_compressor.ARCCompressor(task)
-    opt = torch.optim.Adam(model.weights_list, lr=0.01, betas=(0.5, 0.9))
     log = solution_selection.Logger(task)
+    if fast:
+        from .fast import GraphedTrainer
+        trainer = GraphedTrainer(task, model)
+    else:
+        opt = torch.optim.Adam(model.weights_list, lr=0.01, betas=(0.5, 0.9))
     curve, t0 = {}, time.time()
     for step in range(steps):
-        train.take_step(task, model, opt, step, log)
+        if fast:
+            trainer.step(log)
+        else:
+            train.take_step(task, model, opt, step, log)
         if step + 1 in checkpoints:
             a1, a2 = attempts(log, task.n_test)
             curve[step + 1] = sum(any(a[i] == solution[i] for a in (a1, a2))
@@ -59,6 +66,7 @@ def main():
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--arms", nargs="+", default=["base", "hint"],
                     help="base, base_s1 (seed 1: noise floor), hint, hint_noid (drop identity hints)")
+    ap.add_argument("--fast", action="store_true", help="CUDA-graph training step")
     ap.add_argument("--shard", default="0/1", help="i/n: process every n-th task starting at i")
     ap.add_argument("--out", default=str(Path(__file__).resolve().parents[1] / "runs" / "ab.jsonl"))
     args = ap.parse_args()
@@ -88,7 +96,7 @@ def main():
             arm_hints, seed = arm_specs[arm]
             if (name, arm) in done:
                 continue
-            curve, gates, sec = run_arm(p, solutions[name], name, arm_hints, args.steps, checkpoints, seed)
+            curve, gates, sec = run_arm(p, solutions[name], name, arm_hints, args.steps, checkpoints, seed, args.fast)
             rec = {"task": name, "arm": arm, "curve": curve, "gates": gates, "seconds": round(sec, 1),
                    "hints": [{"program": h.program, "train_acc": round(h.train_acc, 3)} for h in hints]}
             with open(args.out, "a") as f:
