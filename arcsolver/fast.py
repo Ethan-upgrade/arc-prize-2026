@@ -126,14 +126,21 @@ class GraphedTrainer:
     def step(self, logger=None):
         self._set_coefficients()
         if self.step_num < self.warmup:
-            # Warm-up on a side stream, as required before capture.
-            s = torch.cuda.Stream()
+            # Warm-up on a side stream, as required before capture. One stream for all warm-up steps:
+            # each new stream gets its own allocator cache, which grew memory by a full step each time.
+            if not hasattr(self, "_side"):
+                self._side = torch.cuda.Stream()
+            s = self._side
             s.wait_stream(torch.cuda.current_stream())
             with torch.cuda.stream(s):
                 out = self._eager_step()
             torch.cuda.current_stream().wait_stream(s)
         else:
             if self.graph is None:
+                # Warm-up activations sit in the allocator cache; release them so the graph's private
+                # pool is the only big reservation (otherwise reserved memory is ~3x the real peak).
+                torch.cuda.synchronize()
+                torch.cuda.empty_cache()
                 self.graph = torch.cuda.CUDAGraph()
                 self.opt.zero_grad(set_to_none=True)
                 with torch.cuda.graph(self.graph):
