@@ -1,0 +1,6880 @@
+{
+ "split": "evaluation",
+ "exact": [
+  "0c786b71",
+  "0c9aba6e",
+  "195ba7dc",
+  "31d5ba1a",
+  "34b99a2b",
+  "506d28a5",
+  "5d2a5c43",
+  "60c09cac",
+  "642d658d",
+  "66f2d22f",
+  "833dafe3",
+  "9a4bb226",
+  "bf699163",
+  "cd3c21df",
+  "d19f7514",
+  "e133d23d",
+  "e345f17b"
+ ],
+ "tasks": [
+  {
+   "task": "4cd1b7b2",
+   "cells": 16,
+   "hints": [
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.688
+    },
+    {
+     "program": [],
+     "train_acc": 0.667
+    },
+    {
+     "program": [
+      "symmetrize",
+      "symmetrize"
+     ],
+     "train_acc": 0.521
+    }
+   ]
+  },
+  {
+   "task": "66e6c45b",
+   "cells": 16,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.75
+    },
+    {
+     "program": [
+      "gravity0",
+      "gravity1"
+     ],
+     "train_acc": 0.625
+    },
+    {
+     "program": [
+      "gravity0",
+      "gravity3"
+     ],
+     "train_acc": 0.625
+    }
+   ]
+  },
+  {
+   "task": "be03b35f",
+   "cells": 25,
+   "hints": [
+    {
+     "program": [
+      "top_half",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.667
+    },
+    {
+     "program": [
+      "left_half",
+      "logic_xor_0"
+     ],
+     "train_acc": 0.667
+    },
+    {
+     "program": [
+      "right_half",
+      "logic_xor_0"
+     ],
+     "train_acc": 0.667
+    }
+   ]
+  },
+  {
+   "task": "00576224",
+   "cells": 36,
+   "hints": [
+    {
+     "program": [
+      "tile3x3"
+     ],
+     "train_acc": 0.667
+    },
+    {
+     "program": [
+      "tile3x3",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.611
+    },
+    {
+     "program": [
+      "tile3x3",
+      "gravity1"
+     ],
+     "train_acc": 0.556
+    }
+   ]
+  },
+  {
+   "task": "2072aba6",
+   "cells": 36,
+   "hints": [
+    {
+     "program": [
+      "upscale2"
+     ],
+     "train_acc": 0.519
+    },
+    {
+     "program": [
+      "crop_nonbg",
+      "upscale2"
+     ],
+     "train_acc": 0.519
+    }
+   ]
+  },
+  {
+   "task": "59341089",
+   "cells": 36,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "tile1x2"
+     ],
+     "train_acc": 0.722
+    },
+    {
+     "program": [
+      "tile1x2",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.722
+    }
+   ]
+  },
+  {
+   "task": "bbb1b8b6",
+   "cells": 36,
+   "hints": [
+    {
+     "program": [
+      "symmetrize",
+      "left_half"
+     ],
+     "train_acc": 0.768
+    },
+    {
+     "program": [
+      "left_half"
+     ],
+     "train_acc": 0.759
+    },
+    {
+     "program": [
+      "logic_or_1"
+     ],
+     "train_acc": 0.705
+    }
+   ]
+  },
+  {
+   "task": "ed98d772",
+   "cells": 36,
+   "hints": [
+    {
+     "program": [
+      "tile2x1",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.722
+    },
+    {
+     "program": [
+      "rot270",
+      "mirror_tile_2x2"
+     ],
+     "train_acc": 0.678
+    },
+    {
+     "program": [
+      "mirror_tile_2x2"
+     ],
+     "train_acc": 0.667
+    }
+   ]
+  },
+  {
+   "task": "626c0bcc",
+   "cells": 49,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.816
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.776
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_and_0"
+     ],
+     "train_acc": 0.735
+    }
+   ]
+  },
+  {
+   "task": "9110e3c5",
+   "cells": 49,
+   "hints": [
+    {
+     "program": [
+      "logic_and_0",
+      "logic_and_1"
+     ],
+     "train_acc": 0.54
+    },
+    {
+     "program": [
+      "logic_or_0",
+      "logic_nor_1"
+     ],
+     "train_acc": 0.54
+    },
+    {
+     "program": [
+      "logic_xor_0",
+      "logic_and_1"
+     ],
+     "train_acc": 0.54
+    }
+   ]
+  },
+  {
+   "task": "62b74c02",
+   "cells": 56,
+   "hints": [
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.525
+    }
+   ]
+  },
+  {
+   "task": "aa18de87",
+   "cells": 60,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.744
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.621
+    },
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.621
+    }
+   ]
+  },
+  {
+   "task": "48131b3c",
+   "cells": 64,
+   "hints": [
+    {
+     "program": [
+      "rot90",
+      "tile2x2"
+     ],
+     "train_acc": 0.574
+    },
+    {
+     "program": [
+      "rot270",
+      "tile2x2"
+     ],
+     "train_acc": 0.574
+    },
+    {
+     "program": [
+      "flip_v",
+      "tile2x2"
+     ],
+     "train_acc": 0.574
+    }
+   ]
+  },
+  {
+   "task": "12eac192",
+   "cells": 72,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.746
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.746
+    }
+   ]
+  },
+  {
+   "task": "3d31c5b3",
+   "cells": 72,
+   "hints": [
+    {
+     "program": [
+      "top_half",
+      "top_half"
+     ],
+     "train_acc": 0.611
+    }
+   ]
+  },
+  {
+   "task": "281123b4",
+   "cells": 76,
+   "hints": [
+    {
+     "program": [
+      "right_half",
+      "left_half"
+     ],
+     "train_acc": 0.531
+    }
+   ]
+  },
+  {
+   "task": "ef26cbf6",
+   "cells": 77,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.792
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.753
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.74
+    }
+   ]
+  },
+  {
+   "task": "12422b43",
+   "cells": 78,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.83
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.776
+    },
+    {
+     "program": [
+      "gravity2"
+     ],
+     "train_acc": 0.76
+    }
+   ]
+  },
+  {
+   "task": "770cc55f",
+   "cells": 78,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.851
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.794
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.787
+    }
+   ]
+  },
+  {
+   "task": "0692e18c",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [
+      "upscale3"
+     ],
+     "train_acc": 0.794
+    },
+    {
+     "program": [
+      "upscale3",
+      "outline"
+     ],
+     "train_acc": 0.774
+    },
+    {
+     "program": [
+      "rot180",
+      "upscale3"
+     ],
+     "train_acc": 0.712
+    }
+   ]
+  },
+  {
+   "task": "27a77e38",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.943
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.697
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.667
+    }
+   ]
+  },
+  {
+   "task": "8e2edd66",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [
+      "symmetrize",
+      "self_kron"
+     ],
+     "train_acc": 0.588
+    }
+   ]
+  },
+  {
+   "task": "90347967",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [
+      "rot180"
+     ],
+     "train_acc": 0.951
+    },
+    {
+     "program": [
+      "rot180",
+      "gravity2"
+     ],
+     "train_acc": 0.897
+    },
+    {
+     "program": [
+      "rot180",
+      "gravity3"
+     ],
+     "train_acc": 0.887
+    }
+   ]
+  },
+  {
+   "task": "9c56f360",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.873
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.74
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.709
+    }
+   ]
+  },
+  {
+   "task": "c48954c1",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [
+      "rot180",
+      "tile3x3"
+     ],
+     "train_acc": 0.704
+    },
+    {
+     "program": [
+      "rot180",
+      "self_kron"
+     ],
+     "train_acc": 0.597
+    },
+    {
+     "program": [
+      "flip_h",
+      "tile3x3"
+     ],
+     "train_acc": 0.58
+    }
+   ]
+  },
+  {
+   "task": "e69241bd",
+   "cells": 81,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.72
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.669
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "remove_noise"
+     ],
+     "train_acc": 0.609
+    }
+   ]
+  },
+  {
+   "task": "72207abc",
+   "cells": 87,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.936
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.924
+    },
+    {
+     "program": [
+      "symmetrize",
+      "gravity1"
+     ],
+     "train_acc": 0.919
+    }
+   ]
+  },
+  {
+   "task": "af24b4cc",
+   "cells": 90,
+   "hints": [
+    {
+     "program": [
+      "logic_and_0",
+      "logic_and_1"
+     ],
+     "train_acc": 0.7
+    },
+    {
+     "program": [
+      "logic_or_0",
+      "logic_nor_1"
+     ],
+     "train_acc": 0.7
+    },
+    {
+     "program": [
+      "top_half",
+      "logic_and_1"
+     ],
+     "train_acc": 0.65
+    }
+   ]
+  },
+  {
+   "task": "d2acf2cb",
+   "cells": 90,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.827
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.704
+    },
+    {
+     "program": [
+      "gravity0",
+      "outline"
+     ],
+     "train_acc": 0.538
+    }
+   ]
+  },
+  {
+   "task": "22a4bbc2",
+   "cells": 95,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.75
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.573
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.572
+    }
+   ]
+  },
+  {
+   "task": "73c3b0d8",
+   "cells": 96,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.89
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.861
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.856
+    }
+   ]
+  },
+  {
+   "task": "8fbca751",
+   "cells": 96,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.828
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.814
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.613
+    }
+   ]
+  },
+  {
+   "task": "e7b06bea",
+   "cells": 96,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.807
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.77
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_xor_0"
+     ],
+     "train_acc": 0.77
+    }
+   ]
+  },
+  {
+   "task": "b0722778",
+   "cells": 99,
+   "hints": [
+    {
+     "program": [
+      "right_half",
+      "crop_nonbg"
+     ],
+     "train_acc": 0.523
+    }
+   ]
+  },
+  {
+   "task": "c074846d",
+   "cells": 99,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.88
+    },
+    {
+     "program": [
+      "flip_v"
+     ],
+     "train_acc": 0.84
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.839
+    }
+   ]
+  },
+  {
+   "task": "e7dd8335",
+   "cells": 99,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.847
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.803
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_and_0"
+     ],
+     "train_acc": 0.783
+    }
+   ]
+  },
+  {
+   "task": "e99362f0",
+   "cells": 99,
+   "hints": [
+    {
+     "program": [
+      "bottom_half",
+      "right_half"
+     ],
+     "train_acc": 0.533
+    }
+   ]
+  },
+  {
+   "task": "03560426",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.817
+    },
+    {
+     "program": [
+      "flip_v",
+      "gravity1"
+     ],
+     "train_acc": 0.78
+    },
+    {
+     "program": [
+      "flip_v"
+     ],
+     "train_acc": 0.773
+    }
+   ]
+  },
+  {
+   "task": "0becf7df",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.82
+    },
+    {
+     "program": [],
+     "train_acc": 0.81
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.81
+    }
+   ]
+  },
+  {
+   "task": "137f0df0",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.587
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.527
+    }
+   ]
+  },
+  {
+   "task": "2685904e",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.917
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.87
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.862
+    }
+   ]
+  },
+  {
+   "task": "31adaf00",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.76
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.717
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.683
+    }
+   ]
+  },
+  {
+   "task": "4acc7107",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.785
+    },
+    {
+     "program": [
+      "flip_v",
+      "gravity0"
+     ],
+     "train_acc": 0.765
+    },
+    {
+     "program": [
+      "gravity0",
+      "outline"
+     ],
+     "train_acc": 0.762
+    }
+   ]
+  },
+  {
+   "task": "4e469f39",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.843
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.78
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.743
+    }
+   ]
+  },
+  {
+   "task": "575b1a71",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.897
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.897
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.867
+    }
+   ]
+  },
+  {
+   "task": "69889d6e",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.845
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.835
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.83
+    }
+   ]
+  },
+  {
+   "task": "6ad5bdfd",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "gravity0",
+      "remove_noise"
+     ],
+     "train_acc": 0.786
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.741
+    },
+    {
+     "program": [
+      "gravity1",
+      "remove_noise"
+     ],
+     "train_acc": 0.718
+    }
+   ]
+  },
+  {
+   "task": "6df30ad6",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.926
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.926
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.91
+    }
+   ]
+  },
+  {
+   "task": "6f473927",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "tile1x2"
+     ],
+     "train_acc": 0.618
+    },
+    {
+     "program": [
+      "tile1x2",
+      "gravity0"
+     ],
+     "train_acc": 0.524
+    },
+    {
+     "program": [
+      "flip_v",
+      "tile1x2"
+     ],
+     "train_acc": 0.513
+    }
+   ]
+  },
+  {
+   "task": "782b5218",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "fill_enclosed",
+      "gravity2"
+     ],
+     "train_acc": 0.573
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.567
+    },
+    {
+     "program": [
+      "largest_multi",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.567
+    }
+   ]
+  },
+  {
+   "task": "7ee1c6ea",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.78
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "symmetrize"
+     ],
+     "train_acc": 0.75
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.74
+    }
+   ]
+  },
+  {
+   "task": "84db8fc4",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.588
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.562
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.547
+    }
+   ]
+  },
+  {
+   "task": "94414823",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.84
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.84
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.823
+    }
+   ]
+  },
+  {
+   "task": "9c1e755f",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.685
+    },
+    {
+     "program": [
+      "bottom_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.61
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.59
+    }
+   ]
+  },
+  {
+   "task": "a406ac07",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.813
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.807
+    },
+    {
+     "program": [
+      "flip_h",
+      "gravity3"
+     ],
+     "train_acc": 0.727
+    }
+   ]
+  },
+  {
+   "task": "aa300dc3",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.927
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.835
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.825
+    }
+   ]
+  },
+  {
+   "task": "b15fca0b",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.607
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.549
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.549
+    }
+   ]
+  },
+  {
+   "task": "bf32578f",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.775
+    },
+    {
+     "program": [
+      "rot180"
+     ],
+     "train_acc": 0.713
+    },
+    {
+     "program": [
+      "rot270"
+     ],
+     "train_acc": 0.701
+    }
+   ]
+  },
+  {
+   "task": "c35c1b4c",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.913
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.83
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.82
+    }
+   ]
+  },
+  {
+   "task": "c7d4e6ad",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.875
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.865
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.815
+    }
+   ]
+  },
+  {
+   "task": "ce039d91",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.942
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.942
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_or_1"
+     ],
+     "train_acc": 0.885
+    }
+   ]
+  },
+  {
+   "task": "cfb2ce5a",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.61
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.577
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.573
+    }
+   ]
+  },
+  {
+   "task": "da2b0fe3",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.9
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.803
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.797
+    }
+   ]
+  },
+  {
+   "task": "ea9794b1",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "largest_obj"
+     ],
+     "train_acc": 0.58
+    },
+    {
+     "program": [
+      "remove_noise",
+      "largest_obj"
+     ],
+     "train_acc": 0.553
+    }
+   ]
+  },
+  {
+   "task": "f3cdc58f",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "gravity1",
+      "gravity0"
+     ],
+     "train_acc": 0.813
+    },
+    {
+     "program": [
+      "rot180",
+      "remove_noise"
+     ],
+     "train_acc": 0.81
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.807
+    }
+   ]
+  },
+  {
+   "task": "f3e62deb",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.92
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "gravity3"
+     ],
+     "train_acc": 0.91
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.91
+    }
+   ]
+  },
+  {
+   "task": "f45f5ca7",
+   "cells": 100,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.927
+    },
+    {
+     "program": [
+      "logic_xor_0",
+      "tile2x1"
+     ],
+     "train_acc": 0.887
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_and_0"
+     ],
+     "train_acc": 0.88
+    }
+   ]
+  },
+  {
+   "task": "dd2401ed",
+   "cells": 105,
+   "hints": [
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.845
+    },
+    {
+     "program": [],
+     "train_acc": 0.843
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.838
+    }
+   ]
+  },
+  {
+   "task": "67c52801",
+   "cells": 108,
+   "hints": [
+    {
+     "program": [
+      "flip_h",
+      "gravity0"
+     ],
+     "train_acc": 0.845
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.826
+    },
+    {
+     "program": [
+      "gravity0",
+      "gravity1"
+     ],
+     "train_acc": 0.812
+    }
+   ]
+  },
+  {
+   "task": "817e6c09",
+   "cells": 119,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.856
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.742
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_xor_0"
+     ],
+     "train_acc": 0.742
+    }
+   ]
+  },
+  {
+   "task": "62ab2642",
+   "cells": 120,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.787
+    },
+    {
+     "program": [
+      "crop_nonbg"
+     ],
+     "train_acc": 0.787
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.523
+    }
+   ]
+  },
+  {
+   "task": "ae58858e",
+   "cells": 120,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.848
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.812
+    },
+    {
+     "program": [
+      "bottom_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.759
+    }
+   ]
+  },
+  {
+   "task": "e5790162",
+   "cells": 120,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.856
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.826
+    },
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.822
+    }
+   ]
+  },
+  {
+   "task": "332efdb3",
+   "cells": 121,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_nor_1"
+     ],
+     "train_acc": 0.82
+    }
+   ]
+  },
+  {
+   "task": "ac605cbb",
+   "cells": 121,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.915
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.901
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.895
+    }
+   ]
+  },
+  {
+   "task": "dc2aa30b",
+   "cells": 121,
+   "hints": [
+    {
+     "program": [
+      "flip_v",
+      "remove_noise"
+     ],
+     "train_acc": 0.766
+    },
+    {
+     "program": [
+      "flip_v"
+     ],
+     "train_acc": 0.747
+    },
+    {
+     "program": [
+      "rot180",
+      "remove_noise"
+     ],
+     "train_acc": 0.744
+    }
+   ]
+  },
+  {
+   "task": "e5c44e8f",
+   "cells": 121,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.656
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.595
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.595
+    }
+   ]
+  },
+  {
+   "task": "ecaa0ec1",
+   "cells": 121,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.952
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.944
+    },
+    {
+     "program": [
+      "outline",
+      "remove_noise"
+     ],
+     "train_acc": 0.937
+    }
+   ]
+  },
+  {
+   "task": "5ffb2104",
+   "cells": 130,
+   "hints": [
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.948
+    },
+    {
+     "program": [
+      "gravity3",
+      "remove_noise"
+     ],
+     "train_acc": 0.915
+    },
+    {
+     "program": [
+      "remove_noise",
+      "gravity3"
+     ],
+     "train_acc": 0.915
+    }
+   ]
+  },
+  {
+   "task": "72a961c9",
+   "cells": 130,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.927
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.906
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.892
+    }
+   ]
+  },
+  {
+   "task": "5207a7b5",
+   "cells": 135,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.667
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.616
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.614
+    }
+   ]
+  },
+  {
+   "task": "423a55dc",
+   "cells": 143,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.879
+    },
+    {
+     "program": [],
+     "train_acc": 0.866
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.855
+    }
+   ]
+  },
+  {
+   "task": "9bebae7a",
+   "cells": 143,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.855
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.799
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.796
+    }
+   ]
+  },
+  {
+   "task": "1acc24af",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.936
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.905
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.863
+    }
+   ]
+  },
+  {
+   "task": "2c737e39",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.932
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.915
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.884
+    }
+   ]
+  },
+  {
+   "task": "45737921",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.809
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.798
+    },
+    {
+     "program": [],
+     "train_acc": 0.786
+    }
+   ]
+  },
+  {
+   "task": "64a7c07e",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.88
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.879
+    },
+    {
+     "program": [
+      "rot90"
+     ],
+     "train_acc": 0.856
+    }
+   ]
+  },
+  {
+   "task": "7e02026e",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.91
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.898
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.863
+    }
+   ]
+  },
+  {
+   "task": "85fa5666",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.785
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.785
+    },
+    {
+     "program": [
+      "transpose",
+      "remove_noise"
+     ],
+     "train_acc": 0.722
+    }
+   ]
+  },
+  {
+   "task": "917bccba",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.806
+    },
+    {
+     "program": [],
+     "train_acc": 0.785
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.778
+    }
+   ]
+  },
+  {
+   "task": "9f27f097",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.85
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.801
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.801
+    }
+   ]
+  },
+  {
+   "task": "b942fd60",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.709
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.639
+    },
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.617
+    }
+   ]
+  },
+  {
+   "task": "f0afb749",
+   "cells": 144,
+   "hints": [
+    {
+     "program": [
+      "upscale2"
+     ],
+     "train_acc": 0.893
+    },
+    {
+     "program": [
+      "upscale2",
+      "gravity2"
+     ],
+     "train_acc": 0.848
+    },
+    {
+     "program": [
+      "transpose",
+      "upscale2"
+     ],
+     "train_acc": 0.803
+    }
+   ]
+  },
+  {
+   "task": "c87289bb",
+   "cells": 150,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.74
+    },
+    {
+     "program": [
+      "gravity2",
+      "remove_noise"
+     ],
+     "train_acc": 0.705
+    },
+    {
+     "program": [
+      "gravity2"
+     ],
+     "train_acc": 0.687
+    }
+   ]
+  },
+  {
+   "task": "3391f8c0",
+   "cells": 154,
+   "hints": [
+    {
+     "program": [
+      "tile2x1",
+      "logic_xor_0"
+     ],
+     "train_acc": 0.864
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_and_0"
+     ],
+     "train_acc": 0.851
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.807
+    }
+   ]
+  },
+  {
+   "task": "d37a1ef5",
+   "cells": 156,
+   "hints": [
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.957
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "remove_noise"
+     ],
+     "train_acc": 0.932
+    },
+    {
+     "program": [
+      "flip_h",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.846
+    }
+   ]
+  },
+  {
+   "task": "292dd178",
+   "cells": 165,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.88
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.667
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.643
+    }
+   ]
+  },
+  {
+   "task": "11e1fe23",
+   "cells": 168,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.968
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.948
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.948
+    }
+   ]
+  },
+  {
+   "task": "08573cc6",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.746
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.746
+    },
+    {
+     "program": [],
+     "train_acc": 0.738
+    }
+   ]
+  },
+  {
+   "task": "0e671a1a",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.871
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.854
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.854
+    }
+   ]
+  },
+  {
+   "task": "1c0d0a4b",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.826
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.721
+    },
+    {
+     "program": [
+      "rot180",
+      "remove_noise"
+     ],
+     "train_acc": 0.71
+    }
+   ]
+  },
+  {
+   "task": "21f83797",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.63
+    },
+    {
+     "program": [
+      "symmetrize",
+      "gravity1"
+     ],
+     "train_acc": 0.63
+    },
+    {
+     "program": [
+      "symmetrize",
+      "gravity3"
+     ],
+     "train_acc": 0.63
+    }
+   ]
+  },
+  {
+   "task": "2a5f8217",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.867
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.734
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.734
+    }
+   ]
+  },
+  {
+   "task": "e0fb7511",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.895
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_or_1"
+     ],
+     "train_acc": 0.824
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_or_0"
+     ],
+     "train_acc": 0.819
+    }
+   ]
+  },
+  {
+   "task": "e21a174a",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [
+      "rot180"
+     ],
+     "train_acc": 0.823
+    },
+    {
+     "program": [
+      "rot180",
+      "outline"
+     ],
+     "train_acc": 0.793
+    },
+    {
+     "program": [
+      "rot180",
+      "symmetrize"
+     ],
+     "train_acc": 0.79
+    }
+   ]
+  },
+  {
+   "task": "e9b4f6fc",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [
+      "largest_obj"
+     ],
+     "train_acc": 0.687
+    },
+    {
+     "program": [
+      "largest_obj",
+      "gravity1"
+     ],
+     "train_acc": 0.592
+    },
+    {
+     "program": [
+      "largest_obj",
+      "gravity2"
+     ],
+     "train_acc": 0.567
+    }
+   ]
+  },
+  {
+   "task": "f5c89df1",
+   "cells": 169,
+   "hints": [
+    {
+     "program": [
+      "flip_v",
+      "remove_noise"
+     ],
+     "train_acc": 0.913
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.909
+    },
+    {
+     "program": [
+      "rot90",
+      "remove_noise"
+     ],
+     "train_acc": 0.905
+    }
+   ]
+  },
+  {
+   "task": "93b4f4b3",
+   "cells": 170,
+   "hints": [
+    {
+     "program": [
+      "symmetrize",
+      "left_half"
+     ],
+     "train_acc": 0.771
+    },
+    {
+     "program": [
+      "largest_obj"
+     ],
+     "train_acc": 0.738
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "left_half"
+     ],
+     "train_acc": 0.738
+    }
+   ]
+  },
+  {
+   "task": "f83cb3f6",
+   "cells": 170,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.947
+    },
+    {
+     "program": [
+      "remove_noise",
+      "gravity1"
+     ],
+     "train_acc": 0.903
+    },
+    {
+     "program": [
+      "rot180",
+      "remove_noise"
+     ],
+     "train_acc": 0.898
+    }
+   ]
+  },
+  {
+   "task": "fea12743",
+   "cells": 176,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.812
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.782
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.775
+    }
+   ]
+  },
+  {
+   "task": "85b81ff1",
+   "cells": 182,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.93
+    },
+    {
+     "program": [
+      "flip_v",
+      "remove_noise"
+     ],
+     "train_acc": 0.927
+    },
+    {
+     "program": [],
+     "train_acc": 0.923
+    }
+   ]
+  },
+  {
+   "task": "cb227835",
+   "cells": 182,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.898
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.885
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.885
+    }
+   ]
+  },
+  {
+   "task": "4364c1c4",
+   "cells": 192,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.885
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.857
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.826
+    }
+   ]
+  },
+  {
+   "task": "84f2aca1",
+   "cells": 192,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.958
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.958
+    },
+    {
+     "program": [
+      "flip_h",
+      "gravity1"
+     ],
+     "train_acc": 0.744
+    }
+   ]
+  },
+  {
+   "task": "351d6448",
+   "cells": 195,
+   "hints": [
+    {
+     "program": [
+      "bottom_half",
+      "bottom_half"
+     ],
+     "train_acc": 0.936
+    },
+    {
+     "program": [
+      "bottom_half",
+      "top_half"
+     ],
+     "train_acc": 0.885
+    },
+    {
+     "program": [
+      "top_half",
+      "bottom_half"
+     ],
+     "train_acc": 0.846
+    }
+   ]
+  },
+  {
+   "task": "712bf12e",
+   "cells": 195,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.793
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.701
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.582
+    }
+   ]
+  },
+  {
+   "task": "009d5c81",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.883
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.883
+    },
+    {
+     "program": [
+      "logic_and_1",
+      "tile1x2"
+     ],
+     "train_acc": 0.883
+    }
+   ]
+  },
+  {
+   "task": "58743b76",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.917
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.908
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.9
+    }
+   ]
+  },
+  {
+   "task": "8ee62060",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [
+      "rot90"
+     ],
+     "train_acc": 0.864
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_and_1"
+     ],
+     "train_acc": 0.856
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.802
+    }
+   ]
+  },
+  {
+   "task": "9b365c51",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [
+      "tile2x1",
+      "logic_xor_0"
+     ],
+     "train_acc": 0.763
+    },
+    {
+     "program": [
+      "gravity3",
+      "remove_noise"
+     ],
+     "train_acc": 0.651
+    },
+    {
+     "program": [
+      "gravity3",
+      "outline"
+     ],
+     "train_acc": 0.635
+    }
+   ]
+  },
+  {
+   "task": "a934301b",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [
+      "outline",
+      "remove_noise"
+     ],
+     "train_acc": 0.852
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.85
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_and_0"
+     ],
+     "train_acc": 0.842
+    }
+   ]
+  },
+  {
+   "task": "e7a25a18",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [
+      "crop_nonbg"
+     ],
+     "train_acc": 0.531
+    },
+    {
+     "program": [
+      "mirror_tile_2x2",
+      "largest_obj"
+     ],
+     "train_acc": 0.531
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "crop_nonbg"
+     ],
+     "train_acc": 0.531
+    }
+   ]
+  },
+  {
+   "task": "fb791726",
+   "cells": 196,
+   "hints": [
+    {
+     "program": [
+      "tile2x2"
+     ],
+     "train_acc": 0.668
+    },
+    {
+     "program": [
+      "tile2x2",
+      "remove_noise"
+     ],
+     "train_acc": 0.668
+    },
+    {
+     "program": [
+      "mirror_tile_2x2"
+     ],
+     "train_acc": 0.661
+    }
+   ]
+  },
+  {
+   "task": "e7639916",
+   "cells": 200,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.798
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.798
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_or_0"
+     ],
+     "train_acc": 0.798
+    }
+   ]
+  },
+  {
+   "task": "42a15761",
+   "cells": 209,
+   "hints": [
+    {
+     "program": [
+      "flip_v"
+     ],
+     "train_acc": 0.957
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.953
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.949
+    }
+   ]
+  },
+  {
+   "task": "705a3229",
+   "cells": 210,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.912
+    },
+    {
+     "program": [
+      "gravity2"
+     ],
+     "train_acc": 0.902
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.902
+    }
+   ]
+  },
+  {
+   "task": "d47aa2ff",
+   "cells": 210,
+   "hints": [
+    {
+     "program": [
+      "left_half"
+     ],
+     "train_acc": 0.967
+    },
+    {
+     "program": [
+      "right_half"
+     ],
+     "train_acc": 0.967
+    },
+    {
+     "program": [
+      "logic_or_1"
+     ],
+     "train_acc": 0.923
+    }
+   ]
+  },
+  {
+   "task": "f9a67cb5",
+   "cells": 210,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.783
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.764
+    },
+    {
+     "program": [
+      "remove_noise",
+      "symmetrize"
+     ],
+     "train_acc": 0.651
+    }
+   ]
+  },
+  {
+   "task": "fafd9572",
+   "cells": 216,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.879
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.853
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.853
+    }
+   ]
+  },
+  {
+   "task": "2b01abd0",
+   "cells": 224,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.878
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.878
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.878
+    }
+   ]
+  },
+  {
+   "task": "55059096",
+   "cells": 224,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.972
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.95
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.892
+    }
+   ]
+  },
+  {
+   "task": "60a26a3e",
+   "cells": 224,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.956
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.933
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.876
+    }
+   ]
+  },
+  {
+   "task": "963f59bc",
+   "cells": 224,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.928
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.917
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.916
+    }
+   ]
+  },
+  {
+   "task": "0b17323b",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.989
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.976
+    },
+    {
+     "program": [
+      "mirror_h_concat",
+      "logic_or_1"
+     ],
+     "train_acc": 0.976
+    }
+   ]
+  },
+  {
+   "task": "0f63c0b9",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "gravity1",
+      "symmetrize"
+     ],
+     "train_acc": 0.592
+    },
+    {
+     "program": [
+      "symmetrize",
+      "gravity1"
+     ],
+     "train_acc": 0.58
+    },
+    {
+     "program": [
+      "symmetrize",
+      "gravity3"
+     ],
+     "train_acc": 0.58
+    }
+   ]
+  },
+  {
+   "task": "1c02dbbe",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.726
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.72
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.704
+    }
+   ]
+  },
+  {
+   "task": "1c56ad9f",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.897
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.867
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.831
+    }
+   ]
+  },
+  {
+   "task": "1e81d6f9",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.981
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.907
+    },
+    {
+     "program": [
+      "transpose",
+      "remove_noise"
+     ],
+     "train_acc": 0.901
+    }
+   ]
+  },
+  {
+   "task": "29700607",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.814
+    },
+    {
+     "program": [
+      "gravity2"
+     ],
+     "train_acc": 0.777
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.776
+    }
+   ]
+  },
+  {
+   "task": "310f3251",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "tile3x3"
+     ],
+     "train_acc": 0.874
+    },
+    {
+     "program": [
+      "gravity0",
+      "tile3x3"
+     ],
+     "train_acc": 0.773
+    },
+    {
+     "program": [
+      "gravity3",
+      "tile3x3"
+     ],
+     "train_acc": 0.723
+    }
+   ]
+  },
+  {
+   "task": "54db823b",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.91
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.879
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.851
+    }
+   ]
+  },
+  {
+   "task": "692cd3b6",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.674
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.665
+    },
+    {
+     "program": [
+      "anti_transpose"
+     ],
+     "train_acc": 0.606
+    }
+   ]
+  },
+  {
+   "task": "9b4c17c4",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.825
+    },
+    {
+     "program": [],
+     "train_acc": 0.787
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.781
+    }
+   ]
+  },
+  {
+   "task": "b7fb29bc",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.787
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.787
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.784
+    }
+   ]
+  },
+  {
+   "task": "c92b942c",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "tile3x3"
+     ],
+     "train_acc": 0.555
+    }
+   ]
+  },
+  {
+   "task": "cf133acc",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.895
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.791
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.788
+    }
+   ]
+  },
+  {
+   "task": "d282b262",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.935
+    },
+    {
+     "program": [
+      "gravity3",
+      "outline"
+     ],
+     "train_acc": 0.923
+    },
+    {
+     "program": [
+      "flip_h",
+      "gravity3"
+     ],
+     "train_acc": 0.876
+    }
+   ]
+  },
+  {
+   "task": "e2092e0c",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.929
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.913
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.91
+    }
+   ]
+  },
+  {
+   "task": "e74e1818",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.8
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.79
+    },
+    {
+     "program": [],
+     "train_acc": 0.789
+    }
+   ]
+  },
+  {
+   "task": "e9ac8c9e",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.813
+    },
+    {
+     "program": [
+      "tile1x2",
+      "logic_xor_1"
+     ],
+     "train_acc": 0.813
+    },
+    {
+     "program": [
+      "transpose",
+      "remove_noise"
+     ],
+     "train_acc": 0.803
+    }
+   ]
+  },
+  {
+   "task": "f0df5ff0",
+   "cells": 225,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.864
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.858
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.821
+    }
+   ]
+  },
+  {
+   "task": "15663ba9",
+   "cells": 240,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.888
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.888
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.778
+    }
+   ]
+  },
+  {
+   "task": "e4075551",
+   "cells": 240,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.786
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.782
+    },
+    {
+     "program": [
+      "symmetrize",
+      "remove_noise"
+     ],
+     "train_acc": 0.771
+    }
+   ]
+  },
+  {
+   "task": "20981f0e",
+   "cells": 247,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.909
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.864
+    },
+    {
+     "program": [
+      "flip_h",
+      "remove_noise"
+     ],
+     "train_acc": 0.827
+    }
+   ]
+  },
+  {
+   "task": "bf89d739",
+   "cells": 247,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.928
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.901
+    },
+    {
+     "program": [
+      "gravity3",
+      "remove_noise"
+     ],
+     "train_acc": 0.894
+    }
+   ]
+  },
+  {
+   "task": "0a2355a6",
+   "cells": 255,
+   "hints": [
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.783
+    },
+    {
+     "program": [
+      "mirror_v_concat",
+      "logic_and_0"
+     ],
+     "train_acc": 0.717
+    },
+    {
+     "program": [],
+     "train_acc": 0.67
+    }
+   ]
+  },
+  {
+   "task": "516b51b7",
+   "cells": 255,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.81
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.81
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.81
+    }
+   ]
+  },
+  {
+   "task": "d492a647",
+   "cells": 255,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.868
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.844
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.844
+    }
+   ]
+  },
+  {
+   "task": "45bbe264",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.721
+    },
+    {
+     "program": [],
+     "train_acc": 0.709
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.709
+    }
+   ]
+  },
+  {
+   "task": "5b6cbef5",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [
+      "upscale2",
+      "upscale2"
+     ],
+     "train_acc": 0.77
+    },
+    {
+     "program": [
+      "tile2x2",
+      "tile2x2"
+     ],
+     "train_acc": 0.77
+    },
+    {
+     "program": [
+      "self_kron"
+     ],
+     "train_acc": 0.714
+    }
+   ]
+  },
+  {
+   "task": "7c9b52a0",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [
+      "gravity1",
+      "smallest_multi"
+     ],
+     "train_acc": 0.642
+    },
+    {
+     "program": [
+      "largest_multi"
+     ],
+     "train_acc": 0.572
+    },
+    {
+     "program": [
+      "largest_obj"
+     ],
+     "train_acc": 0.556
+    }
+   ]
+  },
+  {
+   "task": "903d1b4a",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.938
+    },
+    {
+     "program": [
+      "rot90"
+     ],
+     "train_acc": 0.938
+    },
+    {
+     "program": [
+      "rot180"
+     ],
+     "train_acc": 0.938
+    }
+   ]
+  },
+  {
+   "task": "9356391f",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.754
+    },
+    {
+     "program": [
+      "gravity1"
+     ],
+     "train_acc": 0.746
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.738
+    }
+   ]
+  },
+  {
+   "task": "992798f6",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.949
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.939
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.939
+    }
+   ]
+  },
+  {
+   "task": "ad7e01d0",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [
+      "self_kron"
+     ],
+     "train_acc": 0.518
+    },
+    {
+     "program": [
+      "anti_transpose",
+      "self_kron"
+     ],
+     "train_acc": 0.506
+    }
+   ]
+  },
+  {
+   "task": "cad67732",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [
+      "tile2x2",
+      "remove_noise"
+     ],
+     "train_acc": 0.834
+    },
+    {
+     "program": [
+      "remove_noise",
+      "upscale2"
+     ],
+     "train_acc": 0.834
+    },
+    {
+     "program": [
+      "remove_noise",
+      "mirror_tile_2x2"
+     ],
+     "train_acc": 0.834
+    }
+   ]
+  },
+  {
+   "task": "ccd554ac",
+   "cells": 256,
+   "hints": [
+    {
+     "program": [
+      "self_kron"
+     ],
+     "train_acc": 0.766
+    },
+    {
+     "program": [
+      "transpose",
+      "self_kron"
+     ],
+     "train_acc": 0.658
+    },
+    {
+     "program": [
+      "rot180",
+      "self_kron"
+     ],
+     "train_acc": 0.649
+    }
+   ]
+  },
+  {
+   "task": "896d5239",
+   "cells": 270,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.914
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.897
+    },
+    {
+     "program": [
+      "tile2x1",
+      "logic_and_0"
+     ],
+     "train_acc": 0.854
+    }
+   ]
+  },
+  {
+   "task": "94be5b80",
+   "cells": 270,
+   "hints": [
+    {
+     "program": [
+      "outline",
+      "remove_noise"
+     ],
+     "train_acc": 0.883
+    },
+    {
+     "program": [],
+     "train_acc": 0.873
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.873
+    }
+   ]
+  },
+  {
+   "task": "ac2e8ecf",
+   "cells": 272,
+   "hints": [
+    {
+     "program": [
+      "outline",
+      "gravity2"
+     ],
+     "train_acc": 0.802
+    },
+    {
+     "program": [
+      "gravity2"
+     ],
+     "train_acc": 0.786
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "gravity2"
+     ],
+     "train_acc": 0.786
+    }
+   ]
+  },
+  {
+   "task": "baf41dbf",
+   "cells": 272,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.836
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.823
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.822
+    }
+   ]
+  },
+  {
+   "task": "136b0064",
+   "cells": 285,
+   "hints": [
+    {
+     "program": [
+      "right_half"
+     ],
+     "train_acc": 0.802
+    },
+    {
+     "program": [
+      "logic_and_1"
+     ],
+     "train_acc": 0.788
+    },
+    {
+     "program": [
+      "gravity2",
+      "logic_and_1"
+     ],
+     "train_acc": 0.788
+    }
+   ]
+  },
+  {
+   "task": "f823c43c",
+   "cells": 285,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.831
+    },
+    {
+     "program": [
+      "rot180"
+     ],
+     "train_acc": 0.831
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.831
+    }
+   ]
+  },
+  {
+   "task": "642248e4",
+   "cells": 288,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.945
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.89
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.849
+    }
+   ]
+  },
+  {
+   "task": "88207623",
+   "cells": 288,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.915
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.907
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "remove_noise"
+     ],
+     "train_acc": 0.898
+    }
+   ]
+  },
+  {
+   "task": "ac3e2b04",
+   "cells": 288,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.864
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.863
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.854
+    }
+   ]
+  },
+  {
+   "task": "e9c9d9a1",
+   "cells": 288,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.64
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.64
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.614
+    }
+   ]
+  },
+  {
+   "task": "17b80ad2",
+   "cells": 289,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.884
+    },
+    {
+     "program": [
+      "gravity2",
+      "remove_noise"
+     ],
+     "train_acc": 0.809
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.805
+    }
+   ]
+  },
+  {
+   "task": "79369cc6",
+   "cells": 289,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.977
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.908
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.824
+    }
+   ]
+  },
+  {
+   "task": "97239e3d",
+   "cells": 289,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.828
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.817
+    },
+    {
+     "program": [
+      "anti_transpose"
+     ],
+     "train_acc": 0.814
+    }
+   ]
+  },
+  {
+   "task": "55783887",
+   "cells": 304,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.919
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.888
+    },
+    {
+     "program": [
+      "gravity3",
+      "remove_noise"
+     ],
+     "train_acc": 0.886
+    }
+   ]
+  },
+  {
+   "task": "50f325b5",
+   "cells": 306,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.966
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.86
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.784
+    }
+   ]
+  },
+  {
+   "task": "5af49b42",
+   "cells": 306,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.929
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.868
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.867
+    }
+   ]
+  },
+  {
+   "task": "845d6e51",
+   "cells": 306,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.867
+    },
+    {
+     "program": [
+      "logic_and_0",
+      "tile2x1"
+     ],
+     "train_acc": 0.756
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.755
+    }
+   ]
+  },
+  {
+   "task": "604001fa",
+   "cells": 320,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.807
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.807
+    },
+    {
+     "program": [
+      "gravity1",
+      "outline"
+     ],
+     "train_acc": 0.76
+    }
+   ]
+  },
+  {
+   "task": "358ba94e",
+   "cells": 323,
+   "hints": [
+    {
+     "program": [
+      "smallest_obj"
+     ],
+     "train_acc": 0.99
+    },
+    {
+     "program": [
+      "rot180",
+      "largest_obj"
+     ],
+     "train_acc": 0.91
+    },
+    {
+     "program": [
+      "rot90",
+      "largest_obj"
+     ],
+     "train_acc": 0.89
+    }
+   ]
+  },
+  {
+   "task": "37d3e8b2",
+   "cells": 323,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.626
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.626
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.626
+    }
+   ]
+  },
+  {
+   "task": "3f23242b",
+   "cells": 323,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.781
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.774
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.773
+    }
+   ]
+  },
+  {
+   "task": "b4a43f3b",
+   "cells": 324,
+   "hints": [
+    {
+     "program": [
+      "logic_and_0",
+      "upscale3"
+     ],
+     "train_acc": 0.887
+    },
+    {
+     "program": [
+      "bottom_half",
+      "upscale3"
+     ],
+     "train_acc": 0.868
+    },
+    {
+     "program": [
+      "logic_and_0",
+      "tile3x3"
+     ],
+     "train_acc": 0.804
+    }
+   ]
+  },
+  {
+   "task": "bcb3040b",
+   "cells": 324,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.932
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.917
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.894
+    }
+   ]
+  },
+  {
+   "task": "13713586",
+   "cells": 342,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.635
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.581
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.564
+    }
+   ]
+  },
+  {
+   "task": "14754a24",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.961
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.936
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.893
+    }
+   ]
+  },
+  {
+   "task": "456873bc",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.778
+    },
+    {
+     "program": [],
+     "train_acc": 0.719
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.71
+    }
+   ]
+  },
+  {
+   "task": "4e45f183",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.88
+    },
+    {
+     "program": [
+      "rot90"
+     ],
+     "train_acc": 0.88
+    },
+    {
+     "program": [
+      "rot180"
+     ],
+     "train_acc": 0.88
+    }
+   ]
+  },
+  {
+   "task": "9caba7c3",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.938
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.917
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.893
+    }
+   ]
+  },
+  {
+   "task": "9ddd00f0",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.934
+    },
+    {
+     "program": [],
+     "train_acc": 0.748
+    },
+    {
+     "program": [
+      "rot90"
+     ],
+     "train_acc": 0.748
+    }
+   ]
+  },
+  {
+   "task": "ba9d41b8",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.888
+    },
+    {
+     "program": [],
+     "train_acc": 0.887
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.854
+    }
+   ]
+  },
+  {
+   "task": "bd14c3bf",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.877
+    },
+    {
+     "program": [
+      "gravity2",
+      "outline"
+     ],
+     "train_acc": 0.668
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.66
+    }
+   ]
+  },
+  {
+   "task": "e9bb6954",
+   "cells": 361,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.821
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.815
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.811
+    }
+   ]
+  },
+  {
+   "task": "96a8c0cd",
+   "cells": 377,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.872
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.868
+    },
+    {
+     "program": [
+      "gravity1",
+      "remove_noise"
+     ],
+     "train_acc": 0.762
+    }
+   ]
+  },
+  {
+   "task": "8dae5dfc",
+   "cells": 380,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.545
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.523
+    }
+   ]
+  },
+  {
+   "task": "9b2a60aa",
+   "cells": 391,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.943
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.93
+    },
+    {
+     "program": [
+      "remove_noise",
+      "gravity1"
+     ],
+     "train_acc": 0.904
+    }
+   ]
+  },
+  {
+   "task": "b20f7c8b",
+   "cells": 396,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.77
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.76
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.758
+    }
+   ]
+  },
+  {
+   "task": "00dbd492",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.776
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.776
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.762
+    }
+   ]
+  },
+  {
+   "task": "1d398264",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.815
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.809
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.809
+    }
+   ]
+  },
+  {
+   "task": "319f2597",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.844
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.75
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.73
+    }
+   ]
+  },
+  {
+   "task": "4f537728",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.885
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.875
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.792
+    }
+   ]
+  },
+  {
+   "task": "759f3fd3",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.565
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.559
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.524
+    }
+   ]
+  },
+  {
+   "task": "99306f82",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.779
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.779
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.779
+    }
+   ]
+  },
+  {
+   "task": "c6e1b8da",
+   "cells": 400,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.872
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.813
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.768
+    }
+   ]
+  },
+  {
+   "task": "103eff5b",
+   "cells": 416,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.84
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.84
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.829
+    }
+   ]
+  },
+  {
+   "task": "d94c3b52",
+   "cells": 425,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.867
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.86
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.855
+    }
+   ]
+  },
+  {
+   "task": "a04b2602",
+   "cells": 432,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.816
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.77
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.765
+    }
+   ]
+  },
+  {
+   "task": "3a301edc",
+   "cells": 441,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.754
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.731
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.696
+    }
+   ]
+  },
+  {
+   "task": "e88171ec",
+   "cells": 441,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.973
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.956
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.938
+    }
+   ]
+  },
+  {
+   "task": "8cb8642d",
+   "cells": 456,
+   "hints": [
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.923
+    },
+    {
+     "program": [
+      "remove_noise",
+      "outline"
+     ],
+     "train_acc": 0.909
+    },
+    {
+     "program": [
+      "outline",
+      "gravity2"
+     ],
+     "train_acc": 0.783
+    }
+   ]
+  },
+  {
+   "task": "2f0c5170",
+   "cells": 462,
+   "hints": [
+    {
+     "program": [
+      "largest_obj"
+     ],
+     "train_acc": 0.814
+    },
+    {
+     "program": [
+      "largest_obj",
+      "remove_noise"
+     ],
+     "train_acc": 0.791
+    },
+    {
+     "program": [
+      "remove_noise",
+      "largest_obj"
+     ],
+     "train_acc": 0.791
+    }
+   ]
+  },
+  {
+   "task": "c97c0139",
+   "cells": 462,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.82
+    },
+    {
+     "program": [
+      "gravity3"
+     ],
+     "train_acc": 0.791
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.789
+    }
+   ]
+  },
+  {
+   "task": "1da012fc",
+   "cells": 475,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.899
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.888
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.888
+    }
+   ]
+  },
+  {
+   "task": "58e15b12",
+   "cells": 480,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.845
+    },
+    {
+     "program": [
+      "gravity1",
+      "gravity0"
+     ],
+     "train_acc": 0.806
+    },
+    {
+     "program": [
+      "gravity0",
+      "gravity1"
+     ],
+     "train_acc": 0.802
+    }
+   ]
+  },
+  {
+   "task": "212895b5",
+   "cells": 483,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.885
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.88
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.88
+    }
+   ]
+  },
+  {
+   "task": "bb52a14b",
+   "cells": 484,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.983
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.981
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.977
+    }
+   ]
+  },
+  {
+   "task": "e95e3d8e",
+   "cells": 484,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.878
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.878
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.835
+    }
+   ]
+  },
+  {
+   "task": "7d419a02",
+   "cells": 500,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.763
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.731
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.715
+    }
+   ]
+  },
+  {
+   "task": "f21745ec",
+   "cells": 506,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.904
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.882
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.783
+    }
+   ]
+  },
+  {
+   "task": "e41c6fd3",
+   "cells": 510,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.821
+    },
+    {
+     "program": [
+      "gravity2",
+      "outline"
+     ],
+     "train_acc": 0.806
+    },
+    {
+     "program": [
+      "gravity2"
+     ],
+     "train_acc": 0.803
+    }
+   ]
+  },
+  {
+   "task": "fe9372f3",
+   "cells": 510,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.733
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.724
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.724
+    }
+   ]
+  },
+  {
+   "task": "9def23fe",
+   "cells": 525,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.735
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.713
+    },
+    {
+     "program": [
+      "remove_noise",
+      "symmetrize"
+     ],
+     "train_acc": 0.687
+    }
+   ]
+  },
+  {
+   "task": "0607ce86",
+   "cells": 528,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.931
+    },
+    {
+     "program": [],
+     "train_acc": 0.907
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.837
+    }
+   ]
+  },
+  {
+   "task": "15113be4",
+   "cells": 529,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.981
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.898
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.892
+    }
+   ]
+  },
+  {
+   "task": "1e97544e",
+   "cells": 529,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.888
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.882
+    },
+    {
+     "program": [
+      "gravity0"
+     ],
+     "train_acc": 0.832
+    }
+   ]
+  },
+  {
+   "task": "33b52de3",
+   "cells": 529,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.781
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.774
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.772
+    }
+   ]
+  },
+  {
+   "task": "639f5a19",
+   "cells": 529,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.622
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.622
+    },
+    {
+     "program": [
+      "symmetrize",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.622
+    }
+   ]
+  },
+  {
+   "task": "73ccf9c2",
+   "cells": 529,
+   "hints": [
+    {
+     "program": [
+      "rot180",
+      "most_colors_obj"
+     ],
+     "train_acc": 0.696
+    }
+   ]
+  },
+  {
+   "task": "ea959feb",
+   "cells": 550,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.899
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.807
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.796
+    }
+   ]
+  },
+  {
+   "task": "a57f2f04",
+   "cells": 572,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.82
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.813
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.809
+    }
+   ]
+  },
+  {
+   "task": "df8cc377",
+   "cells": 572,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.97
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "remove_noise"
+     ],
+     "train_acc": 0.943
+    },
+    {
+     "program": [],
+     "train_acc": 0.939
+    }
+   ]
+  },
+  {
+   "task": "0d87d2a6",
+   "cells": 575,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.798
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.784
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.784
+    }
+   ]
+  },
+  {
+   "task": "5a5a2103",
+   "cells": 576,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.71
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.707
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.702
+    }
+   ]
+  },
+  {
+   "task": "929ab4e9",
+   "cells": 576,
+   "hints": [
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.916
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.913
+    },
+    {
+     "program": [],
+     "train_acc": 0.91
+    }
+   ]
+  },
+  {
+   "task": "c62e2108",
+   "cells": 576,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.805
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.788
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.766
+    }
+   ]
+  },
+  {
+   "task": "95a58926",
+   "cells": 594,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.9
+    },
+    {
+     "program": [
+      "remove_noise",
+      "outline"
+     ],
+     "train_acc": 0.9
+    },
+    {
+     "program": [
+      "outline",
+      "remove_noise"
+     ],
+     "train_acc": 0.893
+    }
+   ]
+  },
+  {
+   "task": "2546ccf6",
+   "cells": 598,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.978
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.964
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.942
+    }
+   ]
+  },
+  {
+   "task": "070dd51e",
+   "cells": 600,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.927
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.903
+    },
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.903
+    }
+   ]
+  },
+  {
+   "task": "ff72ca3e",
+   "cells": 600,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.718
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.681
+    },
+    {
+     "program": [
+      "gravity0",
+      "remove_noise"
+     ],
+     "train_acc": 0.679
+    }
+   ]
+  },
+  {
+   "task": "b457fec5",
+   "cells": 621,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.769
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.769
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.758
+    }
+   ]
+  },
+  {
+   "task": "414297c0",
+   "cells": 624,
+   "hints": [
+    {
+     "program": [
+      "largest_obj"
+     ],
+     "train_acc": 0.828
+    },
+    {
+     "program": [
+      "gravity2",
+      "largest_obj"
+     ],
+     "train_acc": 0.828
+    },
+    {
+     "program": [
+      "largest_obj",
+      "remove_noise"
+     ],
+     "train_acc": 0.791
+    }
+   ]
+  },
+  {
+   "task": "4b6b68e5",
+   "cells": 624,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.801
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.801
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.794
+    }
+   ]
+  },
+  {
+   "task": "1d0a4b61",
+   "cells": 625,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.886
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.834
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.822
+    }
+   ]
+  },
+  {
+   "task": "42918530",
+   "cells": 625,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.969
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.953
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.942
+    }
+   ]
+  },
+  {
+   "task": "5b526a93",
+   "cells": 630,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.882
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.866
+    },
+    {
+     "program": [
+      "flip_h"
+     ],
+     "train_acc": 0.797
+    }
+   ]
+  },
+  {
+   "task": "d304284e",
+   "cells": 644,
+   "hints": [
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.852
+    },
+    {
+     "program": [],
+     "train_acc": 0.842
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.833
+    }
+   ]
+  },
+  {
+   "task": "184a9768",
+   "cells": 650,
+   "hints": [
+    {
+     "program": [
+      "fill_enclosed",
+      "remove_noise"
+     ],
+     "train_acc": 0.875
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.875
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.873
+    }
+   ]
+  },
+  {
+   "task": "5b692c0f",
+   "cells": 672,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.935
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.93
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.93
+    }
+   ]
+  },
+  {
+   "task": "551d5bf1",
+   "cells": 676,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.83
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.83
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.722
+    }
+   ]
+  },
+  {
+   "task": "79fb03f4",
+   "cells": 676,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.735
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.605
+    },
+    {
+     "program": [
+      "rot90",
+      "remove_noise"
+     ],
+     "train_acc": 0.605
+    }
+   ]
+  },
+  {
+   "task": "a096bf4d",
+   "cells": 676,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.991
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.971
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.97
+    }
+   ]
+  },
+  {
+   "task": "da515329",
+   "cells": 676,
+   "hints": [
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.533
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.533
+    },
+    {
+     "program": [],
+     "train_acc": 0.529
+    }
+   ]
+  },
+  {
+   "task": "e681b708",
+   "cells": 676,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.951
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.948
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.932
+    }
+   ]
+  },
+  {
+   "task": "fd4b2b02",
+   "cells": 676,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.851
+    },
+    {
+     "program": [
+      "gravity1",
+      "gravity2"
+     ],
+     "train_acc": 0.832
+    },
+    {
+     "program": [
+      "gravity0",
+      "gravity3"
+     ],
+     "train_acc": 0.831
+    }
+   ]
+  },
+  {
+   "task": "aa4ec2a5",
+   "cells": 702,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.712
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.712
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.649
+    }
+   ]
+  },
+  {
+   "task": "18419cfa",
+   "cells": 728,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.978
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.941
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.863
+    }
+   ]
+  },
+  {
+   "task": "3490cc26",
+   "cells": 728,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.912
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.873
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.864
+    }
+   ]
+  },
+  {
+   "task": "93c31fbe",
+   "cells": 728,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.963
+    },
+    {
+     "program": [],
+     "train_acc": 0.963
+    },
+    {
+     "program": [
+      "rot180",
+      "remove_noise"
+     ],
+     "train_acc": 0.84
+    }
+   ]
+  },
+  {
+   "task": "4ff4c9da",
+   "cells": 729,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.966
+    },
+    {
+     "program": [
+      "crop_nonbg"
+     ],
+     "train_acc": 0.966
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.908
+    }
+   ]
+  },
+  {
+   "task": "c663677b",
+   "cells": 729,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.898
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.898
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.82
+    }
+   ]
+  },
+  {
+   "task": "9772c176",
+   "cells": 754,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.933
+    },
+    {
+     "program": [
+      "bottom_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.749
+    },
+    {
+     "program": [
+      "top_half",
+      "tile2x1"
+     ],
+     "train_acc": 0.748
+    }
+   ]
+  },
+  {
+   "task": "4aab4007",
+   "cells": 784,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.871
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.871
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.765
+    }
+   ]
+  },
+  {
+   "task": "e760a62e",
+   "cells": 784,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.827
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.819
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.814
+    }
+   ]
+  },
+  {
+   "task": "7d1f7ee8",
+   "cells": 812,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.876
+    },
+    {
+     "program": [
+      "flip_v"
+     ],
+     "train_acc": 0.727
+    },
+    {
+     "program": [
+      "gravity2",
+      "outline"
+     ],
+     "train_acc": 0.695
+    }
+   ]
+  },
+  {
+   "task": "891232d6",
+   "cells": 812,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.904
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.877
+    },
+    {
+     "program": [
+      "flip_h",
+      "remove_noise"
+     ],
+     "train_acc": 0.782
+    }
+   ]
+  },
+  {
+   "task": "dc2e9a9d",
+   "cells": 812,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.92
+    },
+    {
+     "program": [
+      "fill_enclosed",
+      "outline"
+     ],
+     "train_acc": 0.913
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.893
+    }
+   ]
+  },
+  {
+   "task": "52fd389e",
+   "cells": 841,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.711
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.703
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.703
+    }
+   ]
+  },
+  {
+   "task": "92e50de0",
+   "cells": 841,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.933
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.923
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.881
+    }
+   ]
+  },
+  {
+   "task": "e619ca6e",
+   "cells": 841,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.876
+    },
+    {
+     "program": [
+      "flip_v"
+     ],
+     "train_acc": 0.849
+    },
+    {
+     "program": [
+      "rot180",
+      "gravity3"
+     ],
+     "train_acc": 0.846
+    }
+   ]
+  },
+  {
+   "task": "05a7bcf2",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.726
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.725
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.706
+    }
+   ]
+  },
+  {
+   "task": "09c534e7",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.931
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.925
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.925
+    }
+   ]
+  },
+  {
+   "task": "16b78196",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.908
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.908
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.903
+    }
+   ]
+  },
+  {
+   "task": "25094a63",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.871
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.738
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.676
+    }
+   ]
+  },
+  {
+   "task": "3ed85e70",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.933
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.929
+    },
+    {
+     "program": [
+      "remove_noise",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.929
+    }
+   ]
+  },
+  {
+   "task": "40f6cd08",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.905
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.842
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.732
+    }
+   ]
+  },
+  {
+   "task": "47996f11",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.918
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.918
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.796
+    }
+   ]
+  },
+  {
+   "task": "696d4842",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.965
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.961
+    },
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.933
+    }
+   ]
+  },
+  {
+   "task": "981571dc",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.896
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.896
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.74
+    }
+   ]
+  },
+  {
+   "task": "a3f84088",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.629
+    },
+    {
+     "program": [
+      "rot90"
+     ],
+     "train_acc": 0.564
+    },
+    {
+     "program": [
+      "rot270"
+     ],
+     "train_acc": 0.564
+    }
+   ]
+  },
+  {
+   "task": "ac0c5833",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.97
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.948
+    },
+    {
+     "program": [
+      "rot270",
+      "remove_noise"
+     ],
+     "train_acc": 0.939
+    }
+   ]
+  },
+  {
+   "task": "af22c60d",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.914
+    },
+    {
+     "program": [
+      "transpose"
+     ],
+     "train_acc": 0.914
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.759
+    }
+   ]
+  },
+  {
+   "task": "b7f8a4d8",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.951
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.922
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.817
+    }
+   ]
+  },
+  {
+   "task": "b9630600",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.948
+    },
+    {
+     "program": [
+      "left_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.856
+    },
+    {
+     "program": [
+      "left_half",
+      "mirror_h_concat"
+     ],
+     "train_acc": 0.855
+    }
+   ]
+  },
+  {
+   "task": "ca8f78db",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.944
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.926
+    },
+    {
+     "program": [],
+     "train_acc": 0.924
+    }
+   ]
+  },
+  {
+   "task": "d931c21c",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.763
+    },
+    {
+     "program": [
+      "logic_or_1",
+      "tile1x2"
+     ],
+     "train_acc": 0.674
+    },
+    {
+     "program": [
+      "right_half",
+      "tile1x2"
+     ],
+     "train_acc": 0.658
+    }
+   ]
+  },
+  {
+   "task": "e1d2900e",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.983
+    },
+    {
+     "program": [],
+     "train_acc": 0.976
+    },
+    {
+     "program": [
+      "flip_h",
+      "remove_noise"
+     ],
+     "train_acc": 0.965
+    }
+   ]
+  },
+  {
+   "task": "f3b10344",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.916
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.876
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.831
+    }
+   ]
+  },
+  {
+   "task": "f8be4b64",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.795
+    },
+    {
+     "program": [
+      "outline"
+     ],
+     "train_acc": 0.783
+    },
+    {
+     "program": [
+      "outline",
+      "fill_enclosed"
+     ],
+     "train_acc": 0.78
+    }
+   ]
+  },
+  {
+   "task": "f9d67f8b",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.947
+    },
+    {
+     "program": [
+      "fill_enclosed"
+     ],
+     "train_acc": 0.809
+    },
+    {
+     "program": [
+      "symmetrize"
+     ],
+     "train_acc": 0.772
+    }
+   ]
+  },
+  {
+   "task": "fd096ab6",
+   "cells": 900,
+   "hints": [
+    {
+     "program": [],
+     "train_acc": 0.97
+    },
+    {
+     "program": [
+      "remove_noise"
+     ],
+     "train_acc": 0.958
+    },
+    {
+     "program": [
+      "top_half",
+      "mirror_v_concat"
+     ],
+     "train_acc": 0.942
+    }
+   ]
+  }
+ ]
+}

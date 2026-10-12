@@ -1,13 +1,14 @@
 # Paper draft — ARC Prize 2026 Paper Track
 
 > Status: DRAFT v1 (2026-10-12). Only the final leaderboard number is pending.
+> Every number below can be recomputed with `python scripts/reproduce_tables.py` (reads `results/`).
 > Limit: 1,500 words (Kaggle Writeup). Author: Chengjun Cai.
 
 ---
 
 ## Title
 
-**What a compression-based ARC solver is missing: symbolic hints, a 3.6× faster CompressARC, and a negative result that points to output size**
+**What a compression-based ARC solver is missing: symbolic hints, a faster CompressARC, and a negative result that points to output size**
 
 (Short title for the gallery: *Symbolic hints for CompressARC: what helps and what doesn't*)
 
@@ -15,7 +16,7 @@
 
 ## Abstract (~120 words)
 
-CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was correct on every task it fired on (15/15) yet solved none: getting the size right is necessary but far from sufficient. We also make CompressARC 3.6× faster on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
+CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was correct on every task it fired on (15/15) yet solved none: getting the size right is necessary but far from sufficient. We also make CompressARC 3.7× faster per process on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
 
 ---
 
@@ -28,7 +29,7 @@ CompressARC solves ARC tasks with no pretraining by training a small network per
   1. A gated hint channel that lets CompressARC use symbolic program outputs at near-zero cost when they are useless.
   2. A careful negative result, with seed-noise controls and a pre-registered decision rule.
   3. A failure analysis showing *which* information the learner lacks, and a size-only hint built from it.
-  4. An engineering result: CUDA-graph training (3.6× on T4) that makes ~570 steps/task fit Kaggle's 12-hour limit.
+  4. An engineering result: CUDA-graph training (3.7× per process on T4) that makes ~570 steps/task fit Kaggle's 12-hour limit.
 
 ## 2. Prior work (~120 words)
 
@@ -59,9 +60,12 @@ Unmodified CompressARC, 8 ARC-AGI-1 eval tasks the authors solved within 200 ste
 ### 4.2 Speed
 | | eager | CUDA graph |
 |---|---|---|
-| RTX 3060 laptop | 2.7–3.9 s/step | 0.28–0.36 s/step |
-| Kaggle T4, 4 procs | 3.6 s/step/proc | 1.0 s/step/proc (3.6×) |
+| RTX 3060 laptop, 1 process | 2.7–3.9 s/step | 0.28–0.36 s/step |
+| Kaggle T4, 4 processes (per process) | 3.6 s/step¹ | 1.0 s/step (3.7×) |
+| Kaggle T4, same 8 tasks: steps/s, whole GPU | 0.56 (1 process) | 4.1 (4 processes) |
 | Correctness (same 8 tasks) | 7/8 | 7/8 |
+
+¹ Measured on the 40 round-1 A/B tasks, not the 8 tasks in the other rows. Eager mode could not run 4 processes on the 8-task set within our budget. The 3.7× figure is therefore approximate. On identical tasks, throughput per GPU rose 7.3× (eager could not usefully share the GPU, so it ran 1 process).
 
 ### 4.3 Whole-answer hints (negative)
 | Round | Tasks | Base (seed 0) | Base (seed 1) | Hinted |
@@ -69,7 +73,7 @@ Unmodified CompressARC, 8 ARC-AGI-1 eval tasks the authors solved within 200 ste
 | 1 (exploratory) | 40 | 8.5 | — | 8.5 |
 | 2 (pre-registered, fresh tasks) | 40 | 5 | 7 | 7 |
 
-The gates *were* used (35/40 tasks had a gate > 0.5), but the solve rate did not change beyond seed noise. In round 1, hints that were just "copy the input" looked harmful; round 2 removed them and still found no gain.
+The gates *were* used (gate > 0.5 in 35/40 tasks in round 1 and 33/40 in round 2), but the solve rate did not change beyond seed noise. In round 1, hints that were just "copy the input" looked harmful; round 2 removed them and still found no gain.
 
 ### 4.4 Failure analysis
 On 99 ARC-AGI-1 eval test outputs from our full submission run:
@@ -95,7 +99,7 @@ The failure analysis points to where that missing information is. Output size is
 
 ## 6. Conclusion (~80 words)
 
-Cheap symbolic search is not a free lunch for a compression-based learner. Its usefulness depends on whether it tells the learner something new. We release code, all experiment logs and a CUDA-graph CompressARC that is 3.6× faster on Kaggle hardware.
+Cheap symbolic search is not a free lunch for a compression-based learner. Its usefulness depends on whether it tells the learner something new. We release code, all experiment logs and a CUDA-graph CompressARC that is 3.7× faster per process on Kaggle hardware.
 
 ---
 
