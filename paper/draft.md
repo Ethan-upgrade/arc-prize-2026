@@ -73,9 +73,13 @@ Unmodified CompressARC, 8 ARC-AGI-1 eval tasks the authors solved within 200 ste
 | 1 (exploratory) | 40 | 8.5 | — | 8.5 |
 | 2 (pre-registered, fresh tasks) | 40 | 5 | 7 | 7 |
 
+![round 2](fig_round2.png)
+
 The gates *were* used (gate > 0.5 in 35/40 tasks in round 1 and 33/40 in round 2), but the solve rate did not change beyond seed noise. In round 1, hints that were just "copy the input" looked harmful; round 2 removed them and still found no gain.
 
 ### 4.4 Failure analysis
+![failure categories](fig_failures.png)
+
 On 99 ARC-AGI-1 eval test outputs from our full submission run:
 - correct 20% · near-miss (≥90% of cells right) 21% · far 27% · wrong palette 18% · **wrong size 12%**
 - tasks whose output is smaller than the input: **0/11 solved**
@@ -105,10 +109,10 @@ Cheap symbolic search is not a free lunch for a compression-based learner. Its u
 
 ### Word count (body, excl. tables): ~1,350 — within budget; leave room for the size-hint result.
 
-### Figures to make
-1. Cover image: an ARC task with the hint channel overlaid (required by Kaggle).
-2. Failure-category bar chart.
-3. Solve curves: base vs hinted vs seed-1 (round 2).
+### Figures (regenerate with `python scripts/make_figures.py`)
+1. `fig_cover.png`: cover image (required by Kaggle). One ARC-AGI-1 task: test input, a partially-correct program hint (`symmetrize`), and the answer.
+2. `fig_failures.png`: failure categories (§4.4).
+3. `fig_round2.png`: round-2 solve curves; seed 1 and hinted runs coincide from step 200 (§4.3).
 
 ### Facts to double-check before submission
 - Liao & Gu ARC-AGI-2 number (blog says ~4%).
