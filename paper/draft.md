@@ -1,6 +1,6 @@
 # Paper draft — ARC Prize 2026 Paper Track
 
-> Status: DRAFT v0 (2026-10-09). Numbers marked **[TBD]** are pending experiments.
+> Status: DRAFT v1 (2026-10-12). Only the final leaderboard number is pending.
 > Limit: 1,500 words (Kaggle Writeup). Author: Chengjun Cai.
 
 ---
@@ -15,7 +15,7 @@
 
 ## Abstract (~120 words)
 
-CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint **[TBD result]**. We also make CompressARC 3.6× faster on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
+CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was correct on every task it fired on (14/14) yet solved none: getting the size right is necessary but far from sufficient. We also make CompressARC 3.6× faster on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
 
 ---
 
@@ -78,7 +78,7 @@ On 99 ARC-AGI-1 eval test outputs from our full submission run:
 - in near-misses, **72%** of wrong cells are cells the model left unchanged that should have changed
 
 ### 4.5 Size-only hint
-Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Paired A/B: **[TBD]**.
+Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Paired A/B (one training run per task, decoded with and without the hint, 500 steps, 14 tasks): **0 → 0 solved**, no difference at any checkpoint. The predicted size was right on all 14.
 
 ### 4.6 Leaderboard (ARC-AGI-2, private hidden set)
 | Version | Score |
@@ -91,11 +91,11 @@ Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Pair
 
 CompressARC's architecture already builds in the symmetries and operations a DSL hint would supply: equivariance to rotations and reflections, cumulative-max and shift layers for propagation, and per-colour channels. A DSL program that is ≥ 50% right on training pairs is almost always made of those same operations. Its output therefore lies close to a point the learner reaches on its own early in training, and the hint saves at most a few steps. Under MDL this is expected: a hint lowers description length only by the information it contains that the model's prior lacks.
 
-The failure analysis points to where that missing information is. Output size is a *global, discrete* quantity. CompressARC can only express it through soft masks, and searches over it at decode time. Symbolic rules get it exactly right when they fire. **Prediction: hints help in proportion to how far their content is from the learner's inductive bias.** The size-only experiment tests this directly. **[TBD: confirmed / not confirmed]**
+The failure analysis points to where that missing information is. Output size is a *global, discrete* quantity. CompressARC can only express it through soft masks, and searches over it at decode time. Symbolic rules get it exactly right when they fire. **Prediction: hints help in proportion to how far their content is from the learner's inductive bias.** The size-only experiment tested this and gave a sharper answer than we expected: on tasks whose output shrinks, size is not the bottleneck. With the size fixed correctly, CompressARC still fails on content. Its weakness on these tasks is *selection*: deciding which part of the input to keep. A crop length cannot express that.
 
 ## 6. Conclusion (~80 words)
 
-**[TBD after size-hint result.]** Draft: Cheap symbolic search is not a free lunch for a compression-based learner. Its usefulness depends on whether it tells the learner something new. We release code, all experiment logs and a CUDA-graph CompressARC that is 3.6× faster on Kaggle hardware.
+Cheap symbolic search is not a free lunch for a compression-based learner. Its usefulness depends on whether it tells the learner something new. We release code, all experiment logs and a CUDA-graph CompressARC that is 3.6× faster on Kaggle hardware.
 
 ---
 
