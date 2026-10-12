@@ -85,7 +85,7 @@ Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Pair
 |---|---|
 | DSL only | 0.00% |
 | DSL exact + CUDA-graph CompressARC (~570 steps/task) | **1.67%** |
-| + size hints | **[TBD]** |
+| final (more steps; submitted after 10-17) | **[TBD]** |
 
 ## 5. Why whole-answer hints fail (theory, ~200 words)
 
