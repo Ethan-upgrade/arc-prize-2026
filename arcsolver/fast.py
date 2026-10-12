@@ -13,6 +13,7 @@ import torch
 
 from .hinted import COMPRESSARC  # noqa: F401  (puts CompressARC on sys.path)
 import layers  # noqa: E402
+import solution_selection  # noqa: E402
 import train  # noqa: E402
 
 
@@ -45,6 +46,34 @@ def _cached_postprocess_mask(task, x_mask, y_mask):
 
 
 layers.postprocess_mask = _cached_postprocess_mask
+
+
+def _fast_best_slice_point(self, mask, length):
+    """Vectorised Logger._best_slice_point with the same result and tie-breaking.
+
+    The original loops over every (length, offset) pair with three torch.sum calls each; on a
+    30x30 variable-size task that is ~110k tiny kernels per step and 2/3 of wall time. For a
+    window [o, o+L): score = 2*sum(window) - sum(all), computed for all windows from one cumsum.
+    """
+    if self.task.in_out_same_size or self.task.all_out_same_size:
+        lengths = [length]
+    else:
+        lengths = range(1, mask.shape[0] + 1)
+    m = mask.detach().double().cpu()  # one transfer; scores are compared exactly like the original
+    n = m.shape[0]
+    c = torch.cat([torch.zeros(1, dtype=m.dtype, device=m.device), torch.cumsum(m, 0)])
+    total = c[-1]
+    best = None
+    for L in lengths:
+        scores = 2 * (c[L:n + 1] - c[0:n - L + 1]) - total
+        top = scores.max()
+        if best is None or top > best[0]:  # strict '>' keeps the earliest length on ties, as before
+            o = int(torch.argmax(scores))  # first max, as torch.argmax in the original
+            best = (top, o, o + L)
+    return best[1], best[2]
+
+
+solution_selection.Logger._best_slice_point = _fast_best_slice_point
 
 mask_select_logprobs = train.mask_select_logprobs
 
