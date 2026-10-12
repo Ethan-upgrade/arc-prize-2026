@@ -15,7 +15,7 @@
 
 ## Abstract (~120 words)
 
-CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was correct on every task it fired on (14/14) yet solved none: getting the size right is necessary but far from sufficient. We also make CompressARC 3.6× faster on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
+CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was correct on every task it fired on (15/15) yet solved none: getting the size right is necessary but far from sufficient. We also make CompressARC 3.6× faster on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
 
 ---
 
@@ -78,7 +78,7 @@ On 99 ARC-AGI-1 eval test outputs from our full submission run:
 - in near-misses, **72%** of wrong cells are cells the model left unchanged that should have changed
 
 ### 4.5 Size-only hint
-Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Paired A/B (one training run per task, decoded with and without the hint, 500 steps, 14 tasks): **0 → 0 solved**, no difference at any checkpoint. The predicted size was right on all 14.
+Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Paired A/B (one training run per task, decoded with and without the hint, 500 steps, 15 tasks): **0 → 0 solved**, no difference at any checkpoint. The predicted size was right on all 15.
 
 ### 4.6 Leaderboard (ARC-AGI-2, private hidden set)
 | Version | Score |
