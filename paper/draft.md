@@ -99,7 +99,13 @@ Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Pair
 | DSL exact + CUDA-graph CompressARC (~570 steps/task) | **1.67%** |
 | final (v3: vectorised read-out, DSL answers first) | **[TBD]** |
 
-Note on v2 vs v3. The 1.67% run used the code as of 10-07, which predates the vectorised read-out (§3.5). v3 also changes answer ordering: a DSL program that is exact on *every* training pair is more reliable than a partially trained CompressARC, so it takes `attempt_1` and CompressARC moves to `attempt_2`. Measured on the 100 public test tasks (ARC-AGI-1 training tasks, solutions known), DSL-exact programs were right on **15 of 17** tasks — the other two are counted as failures, not filtered out. The two-attempt rule means this only matters when CompressARC's own first guess is wrong.
+Note on v2 vs v3. The 1.67% run used the code as of 10-07, which predates the vectorised read-out (§3.5). v3 also changes answer ordering, and this one is a **trade, not a free win**.
+
+With two attempts, v2 submitted `[CompressARC 1st, CompressARC 2nd]`. v3 submits `[DSL, CompressARC 1st]` on the tasks where a DSL program is exact on every training pair. Measured on the 100 public test tasks (ARC-AGI-1 training tasks, solutions known), DSL-exact programs were right on **15 of 17** tasks — the other two are counted as failures, not filtered out. The cost is that on those tasks we give up CompressARC's *second* guess. So the change pays off iff
+
+    P(DSL right)  >  P(CompressARC 2nd right AND CompressARC 1st wrong).
+
+DSL is right 88% of the time when it fires. The right-hand side is the rate at which the two CompressARC guesses differ and only the second is correct; from the round-2 A/B, changing the seed moved the outcome on 2 of 40 tasks, so this term should be small — but **we have not measured it directly**, because the submission logs record the chosen answers, not per-attempt correctness against a hidden truth. Tasks where no DSL program is exact keep `[CompressARC 1st, CompressARC 2nd]` unchanged. If the final score comes in below v2, this ordering is the first thing to revert.
 
 ## 5. Why whole-answer hints fail (theory, ~200 words)
 
