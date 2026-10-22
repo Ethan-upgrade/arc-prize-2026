@@ -162,14 +162,15 @@ if __name__ == "__main__":
         # --hours N / --procs N shrink the run so a preview fits the weekly GPU quota
         # (6 h here). The scored run at submission time is not charged to that quota, so the
         # final submission should use the default 11 h.
+        d = build(u)   # build exactly once: a second build() wipes the patch below
         if "--hours" in sys.argv:
             h = sys.argv[sys.argv.index("--hours") + 1]
             p = sys.argv[sys.argv.index("--procs") + 1] if "--procs" in sys.argv else "4"
             print(f"preview run: {h} h, {p} processes")
-            src = (build(u) / "run.py").read_text()
-            (build(u) / "run.py").write_text(
+            src = (d / "run.py").read_text()
+            (d / "run.py").write_text(
                 f'import os\nos.environ["TOTAL_HOURS"] = "{h}"\nos.environ["N_PROCS"] = "{p}"\n' + src)
-        print(kg("kernels", "push", "-p", str(build(u))).strip())
+        print(kg("kernels", "push", "-p", str(d)).strip())
     elif cmd == "status":
         print(kg("kernels", "status", f"{u}/{KERNEL_SLUG}", check=False).strip())
     elif cmd == "pull":
