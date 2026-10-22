@@ -1,6 +1,6 @@
 # ARC Prize 2026 参赛工作记录
 
-> 维护者：Claude（托管执行）｜参赛人：chengjuncai（Kaggle）｜最后更新：2026-10-06
+> 维护者：Claude（托管执行）｜参赛人：chengjuncai（Kaggle）｜最后更新：2026-10-22
 > 本文件记录**怎么做的、做到哪了、结果如何、下一步做什么**。每次有进展都会更新。
 
 ---
@@ -278,7 +278,7 @@ GPU 配额：本周 6 小时（10-17 重置），一次完整提交要 11+ 小�
 | 问题 | 原因 | 处理 |
 |---|---|---|
 | 本机 GPU 上 CompressARC 比官方慢 10 倍 | Windows 显卡驱动（WDDM）对大量小运算的启动开销很大，一次前向约 7 万次调用 | 不在 Windows 上跑，改用 Kaggle |
-| WSL 连不上外网 | 默认 NAT 网络模式不通 | 新建 `C:\Users\Novak\.wslconfig`，设为 `networkingMode=mirrored`（**影响 WSL 全局，含 Docker**；出问题删掉该文件再 `wsl --shutdown` 即可恢复） |
+| WSL 连不上外网 | 默认 NAT 网络模式不通 | 在用户主目录新建 `.wslconfig`（`%USERPROFILE%\.wslconfig`），设为 `networkingMode=mirrored`（**影响 WSL 全局，含 Docker**；出问题删掉该文件再 `wsl --shutdown` 即可恢复） |
 | 本机并行实验把内存打满 | 本机 15.7GB，日常只剩约 2–6GB（Chrome 常占 6GB+） | 停掉本地实验，全部移到 Kaggle |
 | Claude Code 两次自动停掉后台任务 | 系统内存不足时会回收后台任务 | 不影响 Kaggle 上的实验；只是自动等待/汇报中断 |
 | Kaggle 数据集名称冲突（409/403） | 名称和已有资源冲突 | 换名 `arc2026-hint-ab-code` |
@@ -306,4 +306,4 @@ GPU 配额：本周 6 小时（10-17 重置），一次完整提交要 11+ 小�
 - [x] API token
 - [x] GitHub 账号：`Ethan-upgrade`（10-06 已重新登录 gh）
 - [x] 论文署名：个人
-- [ ] 建议：比赛结束后在 Kaggle Settings → API 重新生成 token（之前的 token 出现在了聊天记录里）
+- [ ] 建议：比赛结束后在 Kaggle Settings → API 重新生成一次 API token（旧的曾在本地明文出现过）
