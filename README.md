@@ -16,8 +16,21 @@ prior knowledge?
 A failure analysis explains why: the DSL proposes what CompressARC already finds on its own, and on
 the tasks where it fails, size is not the bottleneck.
 
-**Also included:** a CUDA-graph training step for CompressARC, about 3.7× faster per process on a
-Kaggle T4 with identical solve rate. On the ARC-AGI-2 leaderboard it raised our score from 0% to 1.67%.
+**Also included:** two speedups for CompressARC that keep the solve rate identical.
+
+| Change | Measured effect |
+|---|---|
+| CUDA-graph training step | ~3.7× faster per process on a Kaggle T4, 7.3× throughput per GPU (4 processes share one card) |
+| Vectorised answer read-out | read-out itself 34–40× faster on large variable-size grids (967 ms → 24 ms on a 30×30 task); whole step ~3× faster on those tasks, neutral elsewhere |
+
+On the ARC-AGI-2 leaderboard these raised our score from 0% to 1.67% (submission v2, code as of
+2026-10-07). A later submission (v3) adds the vectorised read-out, which v2 predates.
+
+**A note on the size of these numbers.** Read-out is only ~2/3 of a step on the 13 of 240 tasks that
+need a size search, so the end-to-end gain from the decoder patch is ~3.7% of wall clock — enough to
+give those tasks a fair step budget, not enough to move the leaderboard much. The 34–40× figure is the
+read-out alone, and the ~3× figure is the step on those tasks; neither is the whole-run speedup.
+`scripts/reproduce_tables.py` recomputes the paper's numbers from `results/`.
 
 ## Layout
 

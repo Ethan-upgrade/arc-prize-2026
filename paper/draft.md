@@ -52,6 +52,9 @@ For hint *k* with output grids *H_k*, we add `g_k · onehot(H_k)` to CompressARC
 ### 3.4 CUDA-graph training
 CompressARC issues ~70k tiny kernels per step; on Kaggle's GPUs it is launch-bound (<3% of VRAM used). We capture forward + backward + Adam into one CUDA graph and replay it. Two capture blockers in the original code (a per-call scalar tensor, a per-step host→device mask copy) are patched at import time. Reusing one side stream during warm-up was essential: a fresh stream per step reserved 3× the needed memory.
 
+### 3.5 Vectorised answer read-out
+On tasks where the output size is not known in advance, the answer is read out by scoring every (length, offset) window. The original calls `torch.sum` three times per window, which is ~110k tiny kernels per step and dominates the step on large grids. One cumulative sum gives every window's score, with the original tie-breaking preserved exactly (4000 random masks, 0 mismatches; `tests/test_best_slice_point.py`). Read-out drops from 967 ms to 24 ms on a 30×30 task (39×) and from 746 ms to 22 ms on a 27×27 one (34×). Because read-out is ~2/3 of the step on those tasks, the step itself gets ~3× cheaper. On same-size tasks the patch is neutral (1.4×). Only 13 of the 240 public tasks are of this kind, so the effect on the overall run is small (~3.7% of wall clock) — it is a fairness fix more than a scoring one: those 13 tasks previously received a median of 237 steps against 637 for the rest.
+
 ## 4. Results (~400 words)
 
 ### 4.1 Reproduction
@@ -64,6 +67,7 @@ Unmodified CompressARC, 8 ARC-AGI-1 eval tasks the authors solved within 200 ste
 | Kaggle T4, 4 processes (per process) | 3.6 s/step¹ | 1.0 s/step (3.7×) |
 | Kaggle T4, same 8 tasks: steps/s, whole GPU | 0.56 (1 process) | 4.1 (4 processes) |
 | Correctness (same 8 tasks) | 7/8 | 7/8 |
+| Read-out only, 30×30 task (RTX 3060) | 967 ms | 24 ms (39×) |
 
 ¹ Measured on the 40 round-1 A/B tasks, not the 8 tasks in the other rows. Eager mode could not run 4 processes on the 8-task set within our budget. The 3.7× figure is therefore approximate. On identical tasks, throughput per GPU rose 7.3× (eager could not usefully share the GPU, so it ran 1 process).
 
@@ -93,7 +97,9 @@ Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Pair
 |---|---|
 | DSL only | 0.00% |
 | DSL exact + CUDA-graph CompressARC (~570 steps/task) | **1.67%** |
-| final (more steps; submitted after 10-17) | **[TBD]** |
+| final (v3: vectorised read-out, DSL answers first) | **[TBD]** |
+
+Note on v2 vs v3. The 1.67% run used the code as of 10-07, which predates the vectorised read-out (§3.5). v3 also changes answer ordering: a DSL program that is exact on *every* training pair is more reliable than a partially trained CompressARC, so it takes `attempt_1` and CompressARC moves to `attempt_2`. Measured on the 100 public test tasks (ARC-AGI-1 training tasks, solutions known), DSL-exact programs were right on **15 of 17** tasks — the other two are counted as failures, not filtered out. The two-attempt rule means this only matters when CompressARC's own first guess is wrong.
 
 ## 5. Why whole-answer hints fail (theory, ~200 words)
 
