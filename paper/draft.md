@@ -1,8 +1,9 @@
 # Paper draft — ARC Prize 2026 Paper Track
 
-> Status: DRAFT v1 (2026-10-12). Only the final leaderboard number is pending.
+> Status: DRAFT v2 (2026-10-24). Final leaderboard number filled in (1.67%, ref 57559858).
 > Every number below can be recomputed with `python scripts/reproduce_tables.py` (reads `results/`).
 > Limit: 1,500 words (Kaggle Writeup). Author: Chengjun Cai.
+> ⚠️ Body is currently ~1,790 words incl. figure captions and table cells — **must be cut to ≤1,500** before submitting the Writeup.
 
 ---
 
@@ -89,6 +90,8 @@ On 99 ARC-AGI-1 eval test outputs from our full submission run:
 - tasks whose output is smaller than the input: **0/11 solved**
 - in near-misses, **72%** of wrong cells are cells the model left unchanged that should have changed
 
+On the 100 public test tasks (ARC-AGI-1 tasks with known answers), the final version reaches **44.3%** (train-set subset, pass@2) and **20.2%** (ARC-AGI-1 eval subset, pass@2) — the same 20.2% that v2 and the published CompressARC achieve, i.e. the engineering changes did not move ARC-AGI-1 accuracy.
+
 ### 4.5 Size-only hint
 Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Paired A/B (one training run per task, decoded with and without the hint, 500 steps, 15 tasks): **0 → 0 solved**, no difference at any checkpoint. The predicted size was right on all 15.
 
@@ -96,16 +99,16 @@ Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Pair
 | Version | Score |
 |---|---|
 | DSL only | 0.00% |
-| DSL exact + CUDA-graph CompressARC (~570 steps/task) | **1.67%** |
-| final (v3: vectorised read-out, DSL answers first) | **[TBD]** |
+| v2: DSL exact + CUDA-graph CompressARC, CompressARC 1st (~570 steps/task) | **1.67%** |
+| v4 (final): vectorised read-out, DSL answers first (~550 steps/task) | **1.67%** |
 
-Note on v2 vs v3. The 1.67% run used the code as of 10-07, which predates the vectorised read-out (§3.5). v3 also changes answer ordering, and this one is a **trade, not a free win**.
+Note on v2 vs v4. The 1.67% v2 run used the code as of 10-07, which predates the vectorised read-out (§3.5). v4 also changes answer ordering, and this one is a **trade, not a free win**. The final version scored exactly the same as v2, so on this competition the read-out fix and the ordering change moved the score by less than one task.
 
 With two attempts, v2 submitted `[CompressARC 1st, CompressARC 2nd]`. v3 submits `[DSL, CompressARC 1st]` on the tasks where a DSL program is exact on every training pair. Measured on the 100 public test tasks (ARC-AGI-1 training tasks, solutions known), DSL-exact programs were right on **15 of 17** tasks — the other two are counted as failures, not filtered out. The cost is that on those tasks we give up CompressARC's *second* guess. So the change pays off iff
 
     P(DSL right)  >  P(CompressARC 2nd right AND CompressARC 1st wrong).
 
-DSL is right 88% of the time when it fires. The right-hand side is the rate at which the two CompressARC guesses differ and only the second is correct; from the round-2 A/B, changing the seed moved the outcome on 2 of 40 tasks, so this term should be small — but **we have not measured it directly**, because the submission logs record the chosen answers, not per-attempt correctness against a hidden truth. Tasks where no DSL program is exact keep `[CompressARC 1st, CompressARC 2nd]` unchanged. If the final score comes in below v2, this ordering is the first thing to revert.
+DSL is right 88% of the time when it fires. The right-hand side is the rate at which the two CompressARC guesses differ and only the second is correct; from the round-2 A/B, changing the seed moved the outcome on 2 of 40 tasks, so this term should be small — but **we have not measured it directly**, because the submission logs record the chosen answers, not per-attempt correctness against a hidden truth. Tasks where no DSL program is exact keep `[CompressARC 1st, CompressARC 2nd]` unchanged. The final leaderboard score (1.67%) equals v2's, so the ordering change did not pay off measurably: on ARC-AGI-2 either the DSL programs fire on too few tasks, or the lost second guess cancels the gain.
 
 ## 5. Why whole-answer hints fail (theory, ~200 words)
 
@@ -119,7 +122,7 @@ Cheap symbolic search is not a free lunch for a compression-based learner. Its u
 
 ---
 
-### Word count (body, excl. tables): ~1,350 — within budget; leave room for the size-hint result.
+### Word count (body, excl. tables): ~1,790 as of 10-24 — **over the 1,500 limit**; needs a trimming pass.
 
 ### Figures (regenerate with `python scripts/make_figures.py`)
 1. `fig_cover.png`: cover image (required by Kaggle). One ARC-AGI-1 task: test input, a partially-correct program hint (`symmetrize`), and the answer.
