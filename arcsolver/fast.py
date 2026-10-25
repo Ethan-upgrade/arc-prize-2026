@@ -75,7 +75,42 @@ def _fast_best_slice_point(self, mask, length):
 
 solution_selection.Logger._best_slice_point = _fast_best_slice_point
 
-mask_select_logprobs = train.mask_select_logprobs
+def _fast_window_scores(mask, length):
+    prefix = torch.cat([torch.zeros_like(mask[:1]), torch.cumsum(mask, dim=0)])
+    return 2 * (prefix[length:] - prefix[:-length]) - prefix[-1]
+
+
+def _fast_window_scores_and_partition(mask, length):
+    """Return (partition, fixed-length offset scores), matching train.mask_select_logprobs order."""
+    n = mask.shape[0]
+    prefix = torch.cat([torch.zeros_like(mask[:1]), torch.cumsum(mask, dim=0)])
+    fixed_scores = 2 * (prefix[length:] - prefix[:-length]) - prefix[-1]
+
+    offsets = torch.arange(n, device=mask.device)
+    lengths = torch.arange(1, n + 1, device=mask.device)
+    ends = offsets[None, :] + lengths[:, None]
+    valid = ends <= n
+    ends = ends.clamp(max=n)
+    all_scores = 2 * (prefix[ends] - prefix[offsets[None, :]]) - prefix[-1]
+    all_scores = all_scores.masked_fill(~valid, -torch.inf)
+    all_partition = torch.logsumexp(all_scores.reshape(-1), dim=0)
+    return all_partition, fixed_scores
+
+
+def _fast_mask_select_logprobs(mask, length):
+    """Compute all length-L window scores from one cumulative sum.
+
+    The original makes three reduction calls per offset. A window score simplifies to
+    2 * sum(mask[offset:offset+length]) - sum(mask), so prefix sums produce every offset
+    score with a small fixed set of tensor operations. This function is used inside the
+    captured training graph.
+    """
+    scores = _fast_window_scores(mask, length)
+    return torch.logsumexp(scores, dim=0), scores
+
+
+train.mask_select_logprobs = _fast_mask_select_logprobs
+mask_select_logprobs = _fast_mask_select_logprobs
 
 
 def loss_terms(task, model, c_size, c_agg):
@@ -91,19 +126,17 @@ def loss_terms(task, model, c_size, c_agg):
                 continue
             uncertain = not (task.in_out_same_size or task.all_out_same_size and in_out_mode == 1
                              or task.all_in_same_size and in_out_mode == 0)
-            cs = c_size if uncertain else 1
             logits_slice = logits[example_num, :, :, :, in_out_mode]
             problem_slice = task.problem[example_num, :, :, in_out_mode]
             output_shape = task.shapes[example_num][in_out_mode]
-            x_part, x_lp = mask_select_logprobs(cs * x_mask[example_num, :, in_out_mode], output_shape[0])
-            y_part, y_lp = mask_select_logprobs(cs * y_mask[example_num, :, in_out_mode], output_shape[1])
             if uncertain:
-                x_part = torch.logsumexp(torch.stack([
-                    mask_select_logprobs(cs * x_mask[example_num, :, in_out_mode], n)[0]
-                    for n in range(1, x_mask.shape[1] + 1)]), dim=0)
-                y_part = torch.logsumexp(torch.stack([
-                    mask_select_logprobs(cs * y_mask[example_num, :, in_out_mode], n)[0]
-                    for n in range(1, y_mask.shape[1] + 1)]), dim=0)
+                x_part, x_lp = _fast_window_scores_and_partition(
+                    c_size * x_mask[example_num, :, in_out_mode], output_shape[0])
+                y_part, y_lp = _fast_window_scores_and_partition(
+                    c_size * y_mask[example_num, :, in_out_mode], output_shape[1])
+            else:
+                x_part, x_lp = mask_select_logprobs(x_mask[example_num, :, in_out_mode], output_shape[0])
+                y_part, y_lp = mask_select_logprobs(y_mask[example_num, :, in_out_mode], output_shape[1])
             rows = []
             for xo in range(x_lp.shape[0]):
                 row = []
