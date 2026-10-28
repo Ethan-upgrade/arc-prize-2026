@@ -366,7 +366,7 @@ GPU 配额：本周 6 小时（10-17 重置），一次完整提交要 11+ 小�
    - 提示有效 → 做正式提交版本 + 消融实验 → 写论文。
    - 提示无效 → 如实分析原因（这本身也可以写进论文），考虑调整提示的形式。
 4. **11-02 前**：提交最终版本并开源 GitHub。
-5. **11-03 – 11-09**：写 Writeup（≤1500 词）+ 封面图 + 公开 notebook。
+5. **11-03 – 11-08**：写 Writeup（≤1500 词）+ 封面图 + 公开 notebook。（官方论文截止是 11-08，此前误记为 11-09）
 
 ---
 
@@ -386,3 +386,14 @@ GPU 配额：本周 6 小时（10-17 重置），一次完整提交要 11+ 小�
 - 已按既有授权正式提交 v4：Kaggle submission ref **57559858**，描述 `v4: vectorized decoder, DSL exact first, 11.5h T4 run`。截至 2026-10-23 查询时状态为 `PENDING`，尚无公开/私有分数。
 - 当前排行榜提交记录仍显示 v2=1.67%、baseline=0%；v3 没有正式提交。v4 得分出来后，更新 `paper/draft.md` §4.6 的 TBD，并如实比较 v2/v4；若 v4 低于 v2，调查 DSL-first 排序后再决定最终版。
 - `python scripts/reproduce_tables.py` 已重跑，论文实验表格与本地原始结果一致。
+
+### 10-28 论文定稿前修订（P0）
+
+- 论文改为以 **v5** 为准：§4.6 表加入 v5（ref `57670191`，commit `ddcf7c9`），并写清 v2/v4/v5 三版同为 1.67%；摘要去掉“加速带来 0%→1.67%”的归因。
+- 加速口径修正：只保留 **3.7× per-process**（4 进程，3.62→0.97 s/step），删除“整卡吞吐 7.3×”（原是 1 进程 eager 对 4 进程 graph，跨配置比较）；§4.2 明确两组数来自不同任务集、未做同题整卡 eager 基线；README 同步。
+- 删除 ARC-AGI-1 **训练集**子集 44.3%（官方 rubric 要求不报 train-set 性能），只保留 eval 子集 **20.2% pass@2**。
+- 失败分类补 `blank 1%`，`wrong size` 更正为 `wrong shape`。
+- 字数：正文含表格/图注约 **1440 词**（限 1500）。
+- 外部数字核实（arcprize 2025 results）：NVARC 2025 ARC-AGI-2 **24.03%**；CompressARC ~4% ARC-AGI-2、~20% ARC-AGI-1 eval；DSL 原语 `len(PRIMITIVES)=46`。
+- 官方截止更正：代码 **11-02**、论文 **11-08**。
+- 仍未完成：Kaggle Paper Track 尚未提交 Writeup（`No submissions found`）。

@@ -20,11 +20,12 @@ the tasks where it fails, size is not the bottleneck.
 
 | Change | Measured effect |
 |---|---|
-| CUDA-graph training step | ~3.7× faster per process on a Kaggle T4, 7.3× throughput per GPU (4 processes share one card) |
+| CUDA-graph training step | ~3.7× faster per process on a Kaggle T4 (4 processes share one card) |
 | Vectorised answer read-out | read-out itself 34–40× faster on large variable-size grids (967 ms → 24 ms on a 30×30 task); whole step ~3× faster on those tasks, neutral elsewhere |
 
-On the ARC-AGI-2 leaderboard these raised our score from 0% to 1.67% (submission v2, code as of
-2026-10-07). A later submission (v3) adds the vectorised read-out, which v2 predates.
+On the ARC-AGI-2 leaderboard our entry scores **1.67%**. Three submissions (v2, v4, v5) all score
+1.67%; v5 (ref `57670191`, commit `ddcf7c9`) is the final one and includes every change above. The
+speedups did not move the score — they are what makes a full 240-task run fit the 12-hour limit.
 
 **A note on the size of these numbers.** Read-out is only ~2/3 of a step on the 13 of 240 tasks that
 need a size search, so the end-to-end gain from the decoder patch is ~3.7% of wall clock — enough to

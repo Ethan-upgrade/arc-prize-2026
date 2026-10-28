@@ -1,135 +1,128 @@
 # Paper draft — ARC Prize 2026 Paper Track
 
-> Status: DRAFT v2 (2026-10-24). Final leaderboard number filled in (1.67%, ref 57559858).
+> Status: DRAFT v3 (2026-10-28). Final submission is v5 (ref 57670191, 1.67%), code at commit ddcf7c9.
 > Every number below can be recomputed with `python scripts/reproduce_tables.py` (reads `results/`).
-> Limit: 1,500 words (Kaggle Writeup). Author: Chengjun Cai.
-> ⚠️ Body is currently ~1,790 words incl. figure captions and table cells — **must be cut to ≤1,500** before submitting the Writeup.
+> Kaggle Writeup limit: 1,500 words. Body is now ~1,460 words including tables and figure captions.
+> Author: Chengjun Cai. Code: https://github.com/Ethan-upgrade/arc-prize-2026
 
 ---
 
 ## Title
 
-**What a compression-based ARC solver is missing: symbolic hints, a faster CompressARC, and a negative result that points to output size**
+**Symbolic hints for a compression-based ARC solver: useful only where the prior is missing**
 
-(Short title for the gallery: *Symbolic hints for CompressARC: what helps and what doesn't*)
-
----
-
-## Abstract (~120 words)
-
-CompressARC solves ARC tasks with no pretraining by training a small network per task to compress it. We ask whether cheap symbolic program search can supply it with useful prior knowledge. We add learnable, zero-initialised gates that let the model use the outputs of partially-correct DSL programs as logit hints. Across two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did **not** help: the gain equalled the variance between random seeds. A failure analysis explains why: the DSL proposes transformations CompressARC already finds on its own, while its real weaknesses are elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was correct on every task it fired on (15/15) yet solved none: getting the size right is necessary but far from sufficient. We also make CompressARC 3.7× faster per process on Kaggle's T4 with CUDA graphs, which raised our ARC-AGI-2 leaderboard score from 0% to **1.67%**.
+(Short title: *Symbolic hints for CompressARC: what helps and what doesn't*)
 
 ---
 
-## 1. Introduction (~150 words)
+## Abstract
 
-- ARC-AGI measures skill acquisition from a few examples; ARC-AGI-2 is unsolved (top Kaggle 2025 score: 24%).
-- Two families: program search (precise, brittle) and learned models (flexible, data-hungry). CompressARC (Liao & Gu, 2025) is unusual: it learns per task from scratch, with no pretraining, by minimising description length.
-- Natural question: can the two families be combined *cheaply*, by letting search tell the learner what it found?
-- Contributions:
-  1. A gated hint channel that lets CompressARC use symbolic program outputs at near-zero cost when they are useless.
-  2. A careful negative result, with seed-noise controls and a pre-registered decision rule.
-  3. A failure analysis showing *which* information the learner lacks, and a size-only hint built from it.
-  4. An engineering result: CUDA-graph training (3.7× per process on T4) that makes ~570 steps/task fit Kaggle's 12-hour limit.
+CompressARC solves ARC tasks with no pretraining by training a tiny network per task to compress it. We ask whether cheap symbolic program search can give it useful prior knowledge. We add learnable, zero-initialised gates that let it use the outputs of partially-correct DSL programs as logit hints. In two pre-registered A/B tests on 80 ARC-AGI-1 tasks, these whole-answer hints did not help: the gain equalled seed noise. A failure analysis explains why: the DSL proposes what CompressARC already finds alone, while its real weakness is elsewhere, most clearly output size (0/11 on shrinking tasks). A size-only hint was right on every task it fired on (18/18) yet solved none: size is necessary but far from sufficient. We also make CompressARC 3.7× faster per process on a Kaggle T4 with CUDA graphs, which fits a 240-task run into the 12-hour limit; our ARC-AGI-2 submission scores 1.67%.
 
-## 2. Prior work (~120 words)
+---
 
-- **CompressARC** (Liao & Gu, 2025): MDL, per-task VAE-style decoder, ~20% ARC-AGI-1 eval, ~4% ARC-AGI-2. We use it unmodified as the learner.
+## 1. Introduction
+
+ARC-AGI measures skill acquisition from a few examples; ARC-AGI-2 is unsolved (best 2025 Kaggle score: 24.03%). Two families compete: program search (precise, brittle) and learned models (flexible, data-hungry). CompressARC (Liao & Gu, 2025) is unusual: it learns per task from scratch, with no pretraining, by minimising description length. Natural question: can the two be combined cheaply, by letting search tell the learner what it found?
+
+Contributions:
+
+1. A gated hint channel that lets CompressARC use symbolic program outputs at near-zero cost when they are useless.
+2. A careful negative result, with seed-noise controls and a pre-registered decision rule.
+3. A failure analysis showing which information the learner lacks, and a size-only hint built from it.
+4. An engineering result: CUDA-graph training, 3.7× per process on a T4, that makes a 240-task run fit the 12-hour limit.
+
+## 2. Prior work
+
+- **CompressARC** (Liao & Gu, 2025, Paper Award 3rd): MDL, a per-task 76K-parameter decoder, ~20% ARC-AGI-1 eval, ~4% ARC-AGI-2. Used unmodified as the learner.
 - **DSL program search** (Icecuber 2020; many since): exhaustive search over hand-written primitives; strong on ARC-AGI-1, near zero on ARC-AGI-2.
-- **Hybrid / neuro-symbolic** (e.g. SOAR, Pourcel et al. 2025; Das et al. 2025): typically use an LLM to *write* programs. We go the other way: programs inform a tiny learner, with no LLM and no pretraining.
-- **Test-time training** (ARChitects, NVARC): pretrained LLMs adapted per task. Far larger compute; orthogonal to our question.
+- **Hybrid / neuro-symbolic** (SOAR, Pourcel et al. 2025; Das et al. 2025): typically use an LLM to write programs. We go the other way: programs inform a tiny learner, with no LLM and no pretraining.
+- **Test-time training** (ARChitects, NVARC): pretrained LLMs adapted per task; far larger compute.
 
-## 3. Method (~350 words)
+## 3. Method
 
 ### 3.1 Partial program search
-46 grid primitives (geometry, cropping, object selection, scaling, gravity, fills, half-grid logic), composed up to depth 2 with BFS. Unlike usual DSL solvers, we keep programs that are *partially* right: output shape matches every training target and pixel accuracy ≥ 50%. A learned colour remap is applied when it makes a program exact. Top-3 programs by accuracy become hints.
+
+46 grid primitives (geometry, cropping, object selection, scaling, gravity, fills, half-grid logic), composed up to depth 2 with BFS. Unlike usual DSL solvers we keep programs that are partially right: output shape matches every training target and pixel accuracy ≥ 50%. A learned colour remap is applied when it makes a program exact. Top-3 by accuracy become hints.
 
 ### 3.2 Gated hint channel
-For hint *k* with output grids *H_k*, we add `g_k · onehot(H_k)` to CompressARC's output logits, where `g_k` is a learnable scalar initialised at 0. In MDL terms the model now encodes the *residual* between hint and target; a useless hint leaves `g_k ≈ 0` and costs almost nothing.
+
+For hint *k* with output grids *H_k*, we add `g_k · onehot(H_k)` to CompressARC's output logits, where `g_k` is a learnable scalar initialised at 0. In MDL terms the model now encodes the residual between hint and target; a useless hint leaves `g_k ≈ 0` and costs almost nothing.
 
 ### 3.3 Size-only hint
-~20 rules map an input grid to an output size (e.g. bounding box of the largest object, number of objects × 1, cell size between separator lines). A rule is kept only if it is exact on every training pair; a test size is used only if all kept rules agree. The hint changes only how the answer is *decoded* (the crop length), not training. That allows a perfectly paired comparison: one training run, decoded with and without the hint.
+
+~20 rules map an input grid to an output size (bounding box of the largest object, cells between separator lines, ...). A rule is kept only if it is exact on every training pair; a test size is used only if all kept rules agree. The hint changes only how the answer is decoded (the crop length), not training, so one training run can be decoded with and without it: a perfectly paired comparison.
 
 ### 3.4 CUDA-graph training
-CompressARC issues ~70k tiny kernels per step; on Kaggle's GPUs it is launch-bound (<3% of VRAM used). We capture forward + backward + Adam into one CUDA graph and replay it. Two capture blockers in the original code (a per-call scalar tensor, a per-step host→device mask copy) are patched at import time. Reusing one side stream during warm-up was essential: a fresh stream per step reserved 3× the needed memory.
+
+CompressARC issues ~70k tiny kernels per step; on Kaggle GPUs it is launch-bound (<3% of VRAM used). We capture forward + backward + Adam into one CUDA graph and replay it, patching two capture blockers (a per-call scalar tensor, a per-step host-to-device mask copy) at import time. Reusing one side stream during warm-up was essential.
 
 ### 3.5 Vectorised answer read-out
-On tasks where the output size is not known in advance, the answer is read out by scoring every (length, offset) window. The original calls `torch.sum` three times per window, which is ~110k tiny kernels per step and dominates the step on large grids. One cumulative sum gives every window's score, with the original tie-breaking preserved exactly (4000 random masks, 0 mismatches; `tests/test_best_slice_point.py`). Read-out drops from 967 ms to 24 ms on a 30×30 task (39×) and from 746 ms to 22 ms on a 27×27 one (34×). Because read-out is ~2/3 of the step on those tasks, the step itself gets ~3× cheaper. On same-size tasks the patch is neutral (1.4×). Only 13 of the 240 public tasks are of this kind, so the effect on the overall run is small (~3.7% of wall clock) — it is a fairness fix more than a scoring one: those 13 tasks previously received a median of 237 steps against 637 for the rest.
 
-## 4. Results (~400 words)
+When the output size is unknown, the answer is read out by scoring every (length, offset) window; the original calls `torch.sum` three times per window (~110k tiny kernels per step). One cumulative sum gives every window's score, with the original tie-breaking preserved exactly (4000 random masks, 0 mismatches). Read-out drops from 967 to 24 ms on a 30×30 task (39×) and from 746 to 22 ms on a 27×27 one (34×). It is ~2/3 of the step there, so the step gets ~3× cheaper; it is neutral on same-size tasks. Only 13 of 240 public tasks are of this kind, so the whole-run effect is ~3.7% of wall clock. It is a fairness fix, not a scoring one: those tasks previously received a median of 237 steps against 637 for the rest.
+
+## 4. Results
 
 ### 4.1 Reproduction
-Unmodified CompressARC, 8 ARC-AGI-1 eval tasks the authors solved within 200 steps: **7/8** solved in 400 steps on a T4.
+
+Unmodified CompressARC, 8 ARC-AGI-1 eval tasks the authors solved within 200 steps: 7/8 solved within 400 steps on a T4 (same 7/8 with CUDA graphs).
 
 ### 4.2 Speed
-| | eager | CUDA graph |
+
+| Config | eager | CUDA graph |
 |---|---|---|
-| RTX 3060 laptop, 1 process | 2.7–3.9 s/step | 0.28–0.36 s/step |
-| Kaggle T4, 4 processes (per process) | 3.6 s/step¹ | 1.0 s/step (3.7×) |
-| Kaggle T4, same 8 tasks: steps/s, whole GPU | 0.56 (1 process) | 4.1 (4 processes) |
-| Correctness (same 8 tasks) | 7/8 | 7/8 |
+| Kaggle T4, per process, 4 processes | 3.62 s/step | 0.97 s/step (3.7×) |
+| Correctness, same 8 tasks | 7/8 | 7/8 |
 | Read-out only, 30×30 task (RTX 3060) | 967 ms | 24 ms (39×) |
 
-¹ Measured on the 40 round-1 A/B tasks, not the 8 tasks in the other rows. Eager mode could not run 4 processes on the 8-task set within our budget. The 3.7× figure is therefore approximate. On identical tasks, throughput per GPU rose 7.3× (eager could not usefully share the GPU, so it ran 1 process).
+The two per-process figures come from different task sets (eager: 40 round-1 A/B tasks; graph: the 8 reproduction tasks), so 3.7× is approximate. We did not run a like-for-like whole-GPU eager baseline and therefore claim no throughput multiplier.
 
 ### 4.3 Whole-answer hints (negative)
+
 | Round | Tasks | Base (seed 0) | Base (seed 1) | Hinted |
 |---|---|---|---|---|
 | 1 (exploratory) | 40 | 8.5 | — | 8.5 |
-| 2 (pre-registered, fresh tasks) | 40 | 5 | 7 | 7 |
+| 2 (pre-registered) | 40 | 5 | 7 | 7 |
 
 ![round 2](fig_round2.png)
 
-The gates *were* used (gate > 0.5 in 35/40 tasks in round 1 and 33/40 in round 2), but the solve rate did not change beyond seed noise. In round 1, hints that were just "copy the input" looked harmful; round 2 removed them and still found no gain.
+The gates were used (gate > 0.5 in 35/40 tasks in round 1 and 33/40 in round 2), but the solve rate did not change beyond seed noise.
 
 ### 4.4 Failure analysis
+
 ![failure categories](fig_failures.png)
 
-On 99 ARC-AGI-1 eval test outputs from our full submission run:
-- correct 20% · near-miss (≥90% of cells right) 21% · far 27% · wrong palette 18% · **wrong size 12%**
-- tasks whose output is smaller than the input: **0/11 solved**
-- in near-misses, **72%** of wrong cells are cells the model left unchanged that should have changed
-
-On the 100 public test tasks (ARC-AGI-1 tasks with known answers), the final version reaches **44.3%** (train-set subset, pass@2) and **20.2%** (ARC-AGI-1 eval subset, pass@2) — the same 20.2% that v2 and the published CompressARC achieve, i.e. the engineering changes did not move ARC-AGI-1 accuracy.
+On 99 ARC-AGI-1 eval outputs from our full run: correct 20% · near-miss (≥90% of cells right) 21% · far 27% · wrong palette 18% · wrong shape 12% · blank 1%. Tasks whose output is smaller than the input: 0/11 solved. In near-misses, 72% of wrong cells are cells the model left unchanged that should have changed. On the 100 public tasks our final version reaches 20.2% (ARC-AGI-1 eval subset, pass@2), the same 20.2% as v2 and the published CompressARC.
 
 ### 4.5 Size-only hint
-Rules fire on 18 test outputs of ARC-AGI-1 eval and are right on **18/18**. Paired A/B (one training run per task, decoded with and without the hint, 500 steps, 15 tasks): **0 → 0 solved**, no difference at any checkpoint. The predicted size was right on all 15.
+
+Rules fire on 18 ARC-AGI-1 eval outputs and are right on 18/18. Paired A/B (one run per task, decoded with and without the hint, 500 steps, 15 tasks): 0-to-0 solved, no difference at any checkpoint; the predicted size was right on all 15.
 
 ### 4.6 Leaderboard (ARC-AGI-2, private hidden set)
+
 | Version | Score |
 |---|---|
 | DSL only | 0.00% |
-| v2: DSL exact + CUDA-graph CompressARC, CompressARC 1st (~570 steps/task) | **1.67%** |
-| v4 (final): vectorised read-out, DSL answers first (~550 steps/task) | **1.67%** |
+| v2: DSL exact + CUDA-graph CompressARC | 1.67% |
+| v4: vectorised read-out, DSL answers first | 1.67% |
+| v5 (final): prefix-sum window scorer | 1.67% |
 
-Note on v2 vs v4. The 1.67% v2 run used the code as of 10-07, which predates the vectorised read-out (§3.5). v4 also changes answer ordering, and this one is a **trade, not a free win**. The final version scored exactly the same as v2, so on this competition the read-out fix and the ordering change moved the score by less than one task.
+All three CompressARC versions score 1.67% (~4 of 240 tasks), so the engineering changes moved the score by less than one task. The final entry is v5, submission 57670191, code at commit ddcf7c9.
 
-With two attempts, v2 submitted `[CompressARC 1st, CompressARC 2nd]`. v3 submits `[DSL, CompressARC 1st]` on the tasks where a DSL program is exact on every training pair. Measured on the 100 public test tasks (ARC-AGI-1 training tasks, solutions known), DSL-exact programs were right on **15 of 17** tasks — the other two are counted as failures, not filtered out. The cost is that on those tasks we give up CompressARC's *second* guess. So the change pays off iff
+## 5. Why whole-answer hints fail
 
-    P(DSL right)  >  P(CompressARC 2nd right AND CompressARC 1st wrong).
+CompressARC's architecture already builds in the symmetries and operations a DSL hint would supply: equivariance to rotations and reflections, cumulative-max and shift layers for propagation, and per-colour channels. A DSL program that is ≥50% right on training pairs is almost always made of those same operations. Its output therefore lies close to a point the learner reaches on its own early in training, and the hint saves at most a few steps. Under MDL this is expected: a hint lowers description length only by the information it contains that the model's prior lacks.
 
-DSL is right 88% of the time when it fires. The right-hand side is the rate at which the two CompressARC guesses differ and only the second is correct; from the round-2 A/B, changing the seed moved the outcome on 2 of 40 tasks, so this term should be small — but **we have not measured it directly**, because the submission logs record the chosen answers, not per-attempt correctness against a hidden truth. Tasks where no DSL program is exact keep `[CompressARC 1st, CompressARC 2nd]` unchanged. The final leaderboard score (1.67%) equals v2's, so the ordering change did not pay off measurably: on ARC-AGI-2 either the DSL programs fire on too few tasks, or the lost second guess cancels the gain.
+The failure analysis points to where that missing information is. Output size is a global, discrete quantity. CompressARC can only express it through soft masks, and searches over it at decode time. Symbolic rules get it exactly right when they fire. Prediction: hints help in proportion to how far their content is from the learner's inductive bias. The size-only experiment gave a sharper answer: on tasks whose output shrinks, size is not the bottleneck. With the size fixed correctly, CompressARC still fails on content. Its weakness on these tasks is selection: deciding which part of the input to keep. A crop length cannot express that.
 
-## 5. Why whole-answer hints fail (theory, ~200 words)
-
-CompressARC's architecture already builds in the symmetries and operations a DSL hint would supply: equivariance to rotations and reflections, cumulative-max and shift layers for propagation, and per-colour channels. A DSL program that is ≥ 50% right on training pairs is almost always made of those same operations. Its output therefore lies close to a point the learner reaches on its own early in training, and the hint saves at most a few steps. Under MDL this is expected: a hint lowers description length only by the information it contains that the model's prior lacks.
-
-The failure analysis points to where that missing information is. Output size is a *global, discrete* quantity. CompressARC can only express it through soft masks, and searches over it at decode time. Symbolic rules get it exactly right when they fire. **Prediction: hints help in proportion to how far their content is from the learner's inductive bias.** The size-only experiment tested this and gave a sharper answer than we expected: on tasks whose output shrinks, size is not the bottleneck. With the size fixed correctly, CompressARC still fails on content. Its weakness on these tasks is *selection*: deciding which part of the input to keep. A crop length cannot express that.
-
-## 6. Conclusion (~80 words)
+## 6. Conclusion
 
 Cheap symbolic search is not a free lunch for a compression-based learner. Its usefulness depends on whether it tells the learner something new. We release code, all experiment logs and a CUDA-graph CompressARC that is 3.7× faster per process on Kaggle hardware.
 
 ---
 
-### Word count (body, excl. tables): ~1,790 as of 10-24 — **over the 1,500 limit**; needs a trimming pass.
-
 ### Figures (regenerate with `python scripts/make_figures.py`)
+
 1. `fig_cover.png`: cover image (required by Kaggle). One ARC-AGI-1 task: test input, a partially-correct program hint (`symmetrize`), and the answer.
 2. `fig_failures.png`: failure categories (§4.4).
 3. `fig_round2.png`: round-2 solve curves; seed 1 and hinted runs coincide from step 200 (§4.3).
-
-### Facts to double-check before submission
-- Liao & Gu ARC-AGI-2 number (blog says ~4%).
-- NVARC 2025 score (24.0% per arcprize.org).
-- Exact count of DSL primitives (46 in `arcsolver/dsl.py`).
