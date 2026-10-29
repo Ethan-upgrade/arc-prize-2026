@@ -395,5 +395,6 @@ GPU 配额：本周 6 小时（10-17 重置），一次完整提交要 11+ 小�
 - 失败分类补 `blank 1%`，`wrong size` 更正为 `wrong shape`。
 - 字数：正文含表格/图注约 **1440 词**（限 1500）。
 - 外部数字核实（arcprize 2025 results）：NVARC 2025 ARC-AGI-2 **24.03%**；CompressARC ~4% ARC-AGI-2、~20% ARC-AGI-1 eval；DSL 原语 `len(PRIMITIVES)=46`。
-- 官方截止更正：代码 **11-02**、论文 **11-08**。
+- 截止日期核对：Kaggle 页面显示 Paper Track deadline **2026-11-09 23:59 UTC**，arcprize.org 写 **11-08**；按早的 **11-08** 交最稳。代码（ARC-AGI-2）11-02。
+- 已建公开复现 notebook：`chengjuncai/arc-2026-reproduce-tables`（CPU，10.8s，跑通 `reproduce_tables.py`）。
 - 仍未完成：Kaggle Paper Track 尚未提交 Writeup（`No submissions found`）。
