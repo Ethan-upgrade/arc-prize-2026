@@ -398,3 +398,10 @@ GPU 配额：本周 6 小时（10-17 重置），一次完整提交要 11+ 小�
 - 截止日期核对：Kaggle 页面显示 Paper Track deadline **2026-11-09 23:59 UTC**，arcprize.org 写 **11-08**；按早的 **11-08** 交最稳。代码（ARC-AGI-2）11-02。
 - 已建公开复现 notebook：`chengjuncai/arc-2026-reproduce-tables`（CPU，10.8s，跑通 `reproduce_tables.py`）。
 - 仍未完成：Kaggle Paper Track 尚未提交 Writeup（`No submissions found`）。
+### 10-29 提交完成：Paper Track Writeup 已交
+
+- Kaggle Writeup 已 **Submitted**（Main Track，ARC-AGI-2 方案）：标题 "Symbolic hints for CompressARC: useful only where the prior is missing"。
+  URL: https://www.kaggle.com/competitions/arc-prize-2026-paper-track/writeups/symbolic-hints-for-compressarc-useful-only-where
+- 完成度 6/6：Title / Subtitle / 封面缩略图（fig_cover.png）/ Description（Kaggle 计 1060 词）/ Tracks / Project links。
+- Project Links：公开复现 notebook `chengjuncai/arc-2026-reproduce-tables` + GitHub 仓库。
+- 截止前可随时 retract / 改 / 重交（Nov 9 2026 11:59 PM GMT）。
