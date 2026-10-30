@@ -1,77 +1,51 @@
-# Symbolic hints for CompressARC (ARC Prize 2026)
+﻿# Symbolic hints for CompressARC（ARC Prize 2026）
 
-Code, raw results and paper draft for an ARC Prize 2026 Paper Track entry (ARC-AGI-2 competition).
+面向 **ARC Prize 2026 Paper Track（ARC-AGI-2）** 的代码、原始结果与论文草稿。研究问题：能否用**廉价的符号程序搜索**为 CompressARC（无预训练、按任务训练小网络）提供有用的先验知识？三个受控实验的结论：在我们尝试的形式下**没有显著帮助**；同时给出两种**保持求解率不变**的加速。
 
-**Question.** [CompressARC](https://github.com/iliao2345/CompressARC) solves ARC tasks with no
-pretraining by training a small network per task. Can cheap symbolic program search give it useful
-prior knowledge?
+## 主要内容
+- `arcsolver/`：符号 DSL 求解与“提示注入”CompressARC
+- 三个受控实验：① 最优部分正确 DSL 程序输出作为门控 logit 偏置；② 输出尺寸先验；③ 失败分析
+- 两个加速：**CUDA-graph 训练步**（Kaggle T4 上约 **3.7×**）；**向量化答案读出**（读出本身 **34–40×**）
+- `paper/` 论文草稿 · `results/` 原始结果 · `scripts/` 复现脚本 · `tests/` 测试 · `WORKLOG.md` 研究记录
 
-**Answer, from three controlled experiments: not in the forms we tried.**
-
-| Hint given to CompressARC | Result |
-|---|---|
-| Output of the best partially-correct DSL programs, as gated logit biases | Gain equal to seed noise (2 rounds, 80 ARC-AGI-1 tasks, pre-registered decision rule) |
-| Output size only, from symbolic size rules | Size right on 15/15 tasks, 0 → 0 solved (paired: one training run decoded both ways) |
-
-A failure analysis explains why: the DSL proposes what CompressARC already finds on its own, and on
-the tasks where it fails, size is not the bottleneck.
-
-**Also included:** two speedups for CompressARC that keep the solve rate identical.
-
-| Change | Measured effect |
-|---|---|
-| CUDA-graph training step | ~3.7× faster per process on a Kaggle T4 (4 processes share one card) |
-| Vectorised answer read-out | read-out itself 34–40× faster on large variable-size grids (967 ms → 24 ms on a 30×30 task); whole step ~3× faster on those tasks, neutral elsewhere |
-
-On the ARC-AGI-2 leaderboard our entry scores **1.67%**. Three submissions (v2, v4, v5) all score
-1.67%; v5 (ref `57670191`, commit `ddcf7c9`) is the final one and includes every change above. The
-speedups did not move the score — they are what makes a full 240-task run fit the 12-hour limit.
-
-**A note on the size of these numbers.** Read-out is only ~2/3 of a step on the 13 of 240 tasks that
-need a size search, so the end-to-end gain from the decoder patch is ~3.7% of wall clock — enough to
-give those tasks a fair step budget, not enough to move the leaderboard much. The 34–40× figure is the
-read-out alone, and the ~3× figure is the step on those tasks; neither is the whole-run speedup.
-`scripts/reproduce_tables.py` recomputes the paper's numbers from `results/`.
-
-## Layout
-
-| Path | What |
-|---|---|
-| `arcsolver/dsl.py` | 46 grid primitives |
-| `arcsolver/search.py` | Exact program search; `partial_search` for hint programs |
-| `arcsolver/hinted.py` | `HintedCompressor`: CompressARC + gated hint channels |
-| `arcsolver/size_hint.py` | Symbolic output-size rules and a size-hinted decoder |
-| `arcsolver/fast.py` | CUDA-graph training step (`GraphedTrainer`) and a vectorised answer decoder |
-| `arcsolver/submit_worker.py` | Per-process solver used by the Kaggle submission |
-| `arcsolver/ab.py`, `ab_size.py` | A/B harnesses for the hint experiments |
-| `scripts/kaggle_*.py` | Push experiments and the submission notebook to Kaggle |
-| `scripts/failure_analysis.py`, `size_rules.py` | Analyses that need no GPU |
-| `scripts/reproduce_tables.py` | **Recomputes every number in the paper from `results/`** |
-| `results/` | Raw per-task results of every experiment in the paper |
-| `tests/` | Equivalence test for the vectorised decoder |
-| `paper/draft.md` | Paper draft |
-| `WORKLOG.md` | Day-by-day log, including dead ends (in Chinese) |
-
-## Reproduce
-
-```bash
-# numbers in the paper, from the saved raw results (seconds, no GPU)
-python scripts/reproduce_tables.py
-
-# setup for running anything else
-git clone https://github.com/arcprize/ARC-AGI-2.git data_repo
-git clone https://github.com/iliao2345/CompressARC.git third_party/CompressARC
-pip install torch numpy matplotlib tqdm
-
-# CUDA-graph vs original step, on one task (needs a CUDA GPU)
-python -m arcsolver.bench_fast 4cd1b7b2 40
-
-# the vectorised decoder gives identical answers to the original
-python tests/test_best_slice_point.py
+## 架构与流程
+```mermaid
+flowchart TD
+    T[ARC tasks] --> S[符号 DSL 程序搜索]
+    S --> H[生成 symbolic hints]
+    H --> M[CompressARC 每任务训练]
+    M --> R[求解 / 结果]
+    R --> A[失败分析 + 论文]
+    subgraph Speedups
+      G[CUDA-graph 训练步 ~3.7x]
+      V[向量化答案读出 34-40x]
+    end
+    M -.-> G
+    R -.-> V
 ```
 
-The CUDA-graph step patches two spots in CompressARC at import time; CompressARC's own files are not modified.
+## 项目结构
+```
+arc-prize-2026/
+├─ arcsolver/    # 符号求解与提示注入
+├─ paper/        # 论文草稿
+├─ results/      # 原始结果
+├─ scripts/      # 复现脚本
+├─ tests/
+├─ WORKLOG.md
+└─ README.md / README_EN.md
+```
 
-## License
+## 快速开始
+```
+git clone https://github.com/Ethan-upgrade/arc-prize-2026.git
+cd arc-prize-2026
+# 依赖基于上游 CompressARC（见 scripts/ 与 requirements）
+python -m pip install -r requirements.txt   # 如存在
+# 运行复现实验见 scripts/ 与 WORKLOG.md
+```
 
-Code in this repository: MIT-0 (see `LICENSE`). CompressARC is MIT-licensed by Isaac Liao and is used as an unmodified dependency.
+> 本仓库派生自 / 基于 [iliao2345/CompressARC](https://github.com/iliao2345/CompressARC)，保留其许可与声明。
+
+## 许可证
+见 `LICENSE`。
